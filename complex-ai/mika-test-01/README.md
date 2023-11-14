@@ -41,5 +41,5 @@ As stated earlier, this might not work that well, because the training data is d
 
 ## Credits
 
-I pretty much followed [this] (https://youtu.be/wQ8BIBpya2k?si=EwJzYuqHOucUpHpl) tutorial to create the AI model.
-To implement the drawing functionallity, I took inspiration from [here] (https://youtu.be/czfvHUw4sks?si=Qh6vbxwswGVs3Fkn).
+I pretty much followed [this](https://youtu.be/wQ8BIBpya2k?si=EwJzYuqHOucUpHpl) tutorial to create the AI model.
+To implement the drawing functionallity, I took inspiration from [here](https://youtu.be/czfvHUw4sks?si=Qh6vbxwswGVs3Fkn).
