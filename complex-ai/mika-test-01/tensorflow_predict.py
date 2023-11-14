@@ -28,7 +28,7 @@ for neuron, value in enumerate(predictions[i]):
 print(f"The number is a {result} with an accuracy of {round(predictions[i][result] * 100, 2)}%")
 
 img = x_test[i]
-img = cv2.resize(img, (640, 480), interpolation=cv2.INTER_NEAREST)
+img = cv2.resize(img, (600, 600), interpolation=cv2.INTER_NEAREST)
 
 cv2.imshow("IMAGE", img)
 cv2.waitKey(0)
