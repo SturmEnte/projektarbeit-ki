@@ -20,19 +20,26 @@ Otherwise just install the libraries *tensorflow* and *opencv-python* with pip.
 
 On the school laptops the file *install_school_laptop.bat* can be executed to install everything necessary.
 
-## tensorflow_train.py
+## Files
+
+### tensorflow_train.py
 
 This file creates, trains and saves a model. It needs to be run before you can use it to test it.
 
-## tensorflow_predict.py
+### tensorflow_predict.py
 
 This file loads the previously trained model and tests it with the provided test data of the tensorflow library.
 The variable *i* can be changed to use a different sample.
 
-## tensorflow_draw.py
+### tensorflow_draw.py
 
 This file is the **most exciting** one in this repository.
 Here you can draw an image of a digit yourself!
 Once you are done drawing hit *enter* on your keyboard and it will try to guess what you drew.
 
 As stated earlier, this might not work that well, because the training data is different to the data you input in many ways.
+
+## Credits
+
+I pretty much followed [this] (https://youtu.be/wQ8BIBpya2k?si=EwJzYuqHOucUpHpl) tutorial to create the AI model.
+To implement the drawing functionallity, I took inspiration from [here] (https://youtu.be/czfvHUw4sks?si=Qh6vbxwswGVs3Fkn).
