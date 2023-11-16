@@ -11,8 +11,8 @@ y_train = [[0], [1], [1], [0]]
 model = tf.keras.models.Sequential()
 
 model.add(tf.keras.layers.Flatten())
-model.add(tf.keras.layers.Dense(128, activation=tf.nn.relu)) # 8 neurons in the layer
-model.add(tf.keras.layers.Dense(128, activation=tf.nn.relu)) # 8 neurons in the layer
+model.add(tf.keras.layers.Dense(128, activation=tf.nn.relu)) # 128 neurons in the layer
+model.add(tf.keras.layers.Dense(128, activation=tf.nn.relu)) # 128 neurons in the layer
 model.add(tf.keras.layers.Dense(2, activation=tf.nn.softmax)) # 2 neurons in the output layer (2 different possible results)
 
 model.compile(optimizer="adam", loss="sparse_categorical_crossentropy", metrics=["accuracy"])

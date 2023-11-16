@@ -18,11 +18,9 @@ print(validation_loss, validation_accuracy)
 
 predictions = model.predict(x_test)
 
-i = 3 # values from 0 to 3
-result = np.argmax(predictions[i])
-
-print("Outputs from neurons:")
-for neuron, value in enumerate(predictions[i]):
-    print(f"{neuron}: {round(value * 100, 2)}%")
-
-print(f"The output of {x_test[i]} is {result} with an accuracy of {round(predictions[i][result] * 100, 2)}%")
+for i, _ in enumerate(predictions):
+    result = np.argmax(predictions[i])
+    print("Outputs from neurons:")
+    for neuron, value in enumerate(predictions[i]):
+        print(f"{neuron}: {round(value * 100, 2)}%")
+    print(f"The output of {x_test[i]} is {result} with an accuracy of {round(predictions[i][result] * 100, 2)}%")
