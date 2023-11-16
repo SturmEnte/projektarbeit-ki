@@ -1,4 +1,5 @@
 import pygame
+from player import Player
 
 # pygame setup
 pygame.init()
@@ -6,11 +7,12 @@ screen = pygame.display.set_mode((1280, 720))
 clock = pygame.time.Clock()
 running = True
 
-player = pygame.Rect(0, 0, 60, 100)
 ground = pygame.Rect(0,screen.get_height() - 100 ,screen.get_width(), 100)
 
 scroll_x = 0
 scroll_y = 0
+
+player = Player(screen)
 
 while running:
     # poll for events
@@ -25,13 +27,11 @@ while running:
     # RENDER YOUR GAME HERE
     ground.update(ground.left - scroll_x, ground.top - scroll_y, ground.width, ground.height)
     
-    if player.top + player.height < ground.top:
-        player.update(player.left, player.top + 2, player.width, player.height)
-
-    pygame.draw.rect(screen, (255, 0, 255), player)
+    player.update()
+    player.draw()
     pygame.draw.rect(screen, (255, 255, 255), ground)
 
-    # scroll_x += 0.1
+    scroll_x += 0.1
 
     # flip() the display to put your work on screen
     pygame.display.flip()
