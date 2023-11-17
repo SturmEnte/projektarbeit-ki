@@ -4,7 +4,7 @@
 
 import random
 
-colorIterations = input("How many trainingsdatas should be createt")
+colorIterations = 0 #how many datas should be created
 red = []
 green = []
 blue = []
