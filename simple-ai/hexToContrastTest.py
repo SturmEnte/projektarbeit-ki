@@ -4,16 +4,16 @@
 
 import random
 
-hexWertHintergund = input("Hintergrundfarbe zum Testen #")
+#hexWertHintergund = input("Hintergrundfarbe zum Testen #")
 
-
+coloriterations = 5
 red = []
 green = []
 blue = []
 
 result = []
 
-for i in range(6):
+for i in range(coloriterations):
    red.append(random.randint(0, 255))
    green.append(random.randint(0,255))
    blue.append(random.randint(0, 255))
@@ -37,7 +37,7 @@ def hexToRgb(hexWert):
     return red, green, blue
 
 #use formula to calculate the relative luminicance 
-#to later use the result to determin if white or blac text should be used 
+#to later use the result to determin if white or black text should be used 
 def relativeLuminicance(red, green, blue):
     l = 0.2126 * red + 0.7152 * green + 0.0722 * blue
     print(l)
@@ -50,29 +50,7 @@ def wOrBTextChoose(l):
     else:
         print("Black text")
 
-#Check if what color has the higher number
-#and calculate the contrast:
-#
-#higherContrast / lowerContrast
-
-
-#def calculateContrast():
-#    if l1 > l2:
-#        contrast = (l1 + 0.05) / (l2 + 0.05)
-#    else:
-#        contrast = (l2 + 0.05) / (l1 + 0.05)
-#    
-#    print(f"Kontrast ist {contrast}")
-
-
-#red, green, blue = hexToRgb(hexWertText)
-#l1 = relativeLuminicance(red, green, blue)
-red, green, blue = hexToRgb(hexWertHintergund)
-for i in range(6):
-    relativeLuminicance(red[i], green[i], blue[i])
-#^^^Code muss überarbietet werden, sodass der dumme huan hier nen array benutzen kann lmao
-#Ich kann nicht mehr. 
-
-    wOrBTextChoose()
-
-#calculateContrast()
+#Calculate all the relative Luminicance and look if white or black text should be used
+for i in range(coloriterations):
+    l = relativeLuminicance(red[i], green[i], blue[i])
+    wOrBTextChoose(l)
