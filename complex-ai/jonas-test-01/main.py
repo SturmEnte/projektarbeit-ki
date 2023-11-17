@@ -29,17 +29,18 @@ while running:
     # Update
 
     for player_collider in player_colliders:
+        player_collider.update(player_collider.left - scroll_x, player_collider.top - scroll_y, player_collider.width, player_collider.height)
+        
         if player.rect.colliderect(player_collider):
             player.falling = False
             player.speed_y = 0
-
-    ground.update(ground.left - scroll_x, ground.top - scroll_y, ground.width, ground.height)
     
     player.update()
     
     # Render
     player.draw()
-    pygame.draw.rect(screen, (255, 255, 255), ground)
+    for player_collider in player_colliders:
+        pygame.draw.rect(screen, (255, 255, 255), player_collider)
 
     # flip() the display to put your work on screen
     pygame.display.flip()
