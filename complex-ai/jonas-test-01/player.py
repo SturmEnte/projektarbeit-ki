@@ -36,7 +36,6 @@ class Player:
             self.falling = True
             self.fall_start = time.time()
 
-    # Horizontal Movement
     def move_left(self, should_move):
         if should_move:
             self.speed_x -= 10
