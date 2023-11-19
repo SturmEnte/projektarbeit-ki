@@ -35,3 +35,18 @@ class Player:
             self.speed_y = -JUMP_FORCE
             self.falling = True
             self.fall_start = time.time()
+
+    def move_left(self, should_move):
+        if should_move:
+            self.speed_x -= 10
+        else:
+            self.speed_x += 10
+
+    def move_right(self, should_move):
+        if should_move:
+            self.speed_x += 10
+        else:
+            self.speed_x -= 10
+
+    def get_scroll_x(self):
+        return self.speed_x

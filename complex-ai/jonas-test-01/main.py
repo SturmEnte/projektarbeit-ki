@@ -1,5 +1,4 @@
 import pygame
-import time
 from player import Player
 
 # Pygame setup
@@ -24,15 +23,31 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-        elif event.type == pygame.KEYDOWN:
+        
+        if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
                 player.jump()
+            
+            if event.key == pygame.K_a:
+                player.move_left(True)
+            
+            if event.key == pygame.K_d:
+                player.move_right(True)
+        
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_a:
+                player.move_left(False)
+            
+            if event.key == pygame.K_d:
+                player.move_right(False)    
 
     # Clear the screen
     screen.fill((0, 128, 255))
 
     # Update game objects
     player.update()
+
+    scroll_x = player.get_scroll_x()
 
     collided = False
     for player_collider in player_colliders:
