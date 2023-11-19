@@ -1,0 +1,46 @@
+body{
+    font-family: 'Trebuchet MS', sans-serif;
+    margin: 0%;
+    text-align: center;
+    color: #0077b6;
+    
+}
+
+
+
+#navBar{
+    height: 60px;
+    width: 100%;
+    background-color: #FFF;
+    margin: 0%; 
+    border-bottom: solid;
+    border-width: 1px;
+    border-color: #acacac;
+    position: relative;
+}
+#navText{
+    margin: 0;
+    padding: 0; 
+    padding-top: 10px;
+    transition: 0.5s;
+}
+.buttonGeneral{
+    display: flex;
+    justify-content: right;
+    border:solid;
+    padding: 5px;
+    width: fit-content;
+    color: #0077b6; 
+}
+.buttonGeneral a{
+    color: #0077b6; 
+    text-decoration: none;
+    text-align: right;
+}
+
+#Colorpicker{
+    width: 400px;
+    height: 400px;
+    border-width: 0;
+    position: absolute;
+}
