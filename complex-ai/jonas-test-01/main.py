@@ -2,12 +2,13 @@ import pygame
 import time
 from player import Player
 
-# pygame setup
+# Pygame setup
 pygame.init()
 screen = pygame.display.set_mode((1280, 720))
 clock = pygame.time.Clock()
 running = True
 
+# Variables
 ground = pygame.Rect(0,screen.get_height() - 100 ,screen.get_width(), 100)
 
 scroll_x = 0
@@ -17,9 +18,9 @@ player = Player(screen)
 
 player_colliders = [ground]
 
+# Game loop
 while running:
-    # poll for events
-    # pygame.QUIT event means the user clicked X to close your window
+    # Poll for events
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
@@ -27,10 +28,12 @@ while running:
             if event.key == pygame.K_SPACE:
                 player.jump()
 
-    # fill the screen with a color to wipe away anything from last frame
+    # Clear the screen
     screen.fill((0, 128, 255))
 
-    # Update
+    # Update game objects
+    player.update()
+
     collided = False
     for player_collider in player_colliders:
         player_collider.update(player_collider.left - scroll_x, player_collider.top - scroll_y, player_collider.width, player_collider.height)
@@ -43,18 +46,14 @@ while running:
             player.falling = False
             player.speed_y = 0
             collided = True
-
-    player.update()
     
-    # Render
+    # Render game objects
     for player_collider in player_colliders:
         pygame.draw.rect(screen, (255, 255, 255), player_collider)
 
     player.draw()
 
-    # flip() the display to put your work on screen
     pygame.display.flip()
-
     clock.tick(60)  # limits FPS to 60
 
 pygame.quit()
