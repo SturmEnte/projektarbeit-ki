@@ -12,6 +12,10 @@ class Player:
 
         self.rect = pygame.Rect(screen.get_width() / 2 - player_width / 2, screen.get_height() / 2 - player_height / 2, player_width, player_height)
         self.ground_collider = pygame.Rect(self.rect.left, self.rect.top + player_height, self.rect.width, 1)
+        self.side_colliders = [
+            pygame.Rect(self.rect.left - 1, self.rect.top, 1, self.rect.height),
+            pygame.Rect(self.rect.left + self.rect.width + 1, self.rect.top, 1, self.rect.height)
+        ]
         self.screen = screen
 
         self.speed_x = 0
@@ -32,6 +36,8 @@ class Player:
     def move(self, left, top):
         self.rect.update(self.rect.left + left, self.rect.top + top, self.rect.width, self.rect.height)
         self.ground_collider.update(self.ground_collider.left + left, self.ground_collider.top + top, self.ground_collider.width, self.ground_collider.height)
+        for collider in self.side_colliders:
+            collider.update(collider.left + left, collider.top + top, collider.width, collider.height)
 
     def draw(self):
         pygame.draw.rect(self.screen, (255, 0, 255), self.rect)
