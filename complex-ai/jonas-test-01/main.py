@@ -1,4 +1,5 @@
 import pygame
+import time
 from player import Player
 
 # Pygame setup
@@ -52,7 +53,7 @@ while running:
     for player_collider in player_colliders:
         player_collider.update(player_collider.left - scroll_x, player_collider.top - scroll_y, player_collider.width, player_collider.height)
         
-        if player.rect.colliderect(player_collider):
+        if player.rect.colliderect(player_collider) and player.ground_collider.colliderect(player_collider):
 
             while player_collider.top < player.rect.top + player.rect.height:
                 player.move(0, -1)
@@ -61,7 +62,9 @@ while running:
             player.falling = False
             player.speed_y = 0
         else:
-            player.falling = True
+            if player.falling == False:
+                player.falling = True
+                player.fall_start = time.time()
     
     # Render game objects
     for player_collider in player_colliders:
