@@ -11,6 +11,7 @@ class Player:
         player_height = 100
 
         self.rect = pygame.Rect(screen.get_width() / 2 - player_width / 2, screen.get_height() / 2 - player_height / 2, player_width, player_height)
+        self.ground_collider = pygame.Rect(self.rect.left, self.rect.top + player_height, self.rect.width, 1)
         self.screen = screen
 
         self.speed_x = 0
@@ -26,7 +27,11 @@ class Player:
             self.speed_y += GRAVITY * (time.time() - self.fall_start)
 
         self.relative_position = (self.relative_position[0] + self.speed_x, self.relative_position[1] + self.speed_y)
-        self.rect.update(self.rect.left, self.rect.top + self.speed_y, self.rect.width, self.rect.height)
+        self.move(0, self.speed_y)
+
+    def move(self, left, top):
+        self.rect.update(self.rect.left + left, self.rect.top + top, self.rect.width, self.rect.height)
+        self.ground_collider.update(self.ground_collider.left + left, self.ground_collider.top + top, self.ground_collider.width, self.ground_collider.height)
 
     def draw(self):
         pygame.draw.rect(self.screen, (255, 0, 255), self.rect)

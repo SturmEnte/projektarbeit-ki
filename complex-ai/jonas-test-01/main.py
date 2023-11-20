@@ -49,24 +49,26 @@ while running:
 
     scroll_x, _ = player.get_scroll()
 
-    collided = False
     for player_collider in player_colliders:
         player_collider.update(player_collider.left - scroll_x, player_collider.top - scroll_y, player_collider.width, player_collider.height)
         
         if player.rect.colliderect(player_collider):
-            
+
             while player_collider.top < player.rect.top + player.rect.height:
-                player.rect.update(player.rect.left, player.rect.top - 1, player.rect.width, player.rect.height)
+                player.move(0, -1)
                 
+        if player_collider.colliderect(player.ground_collider):
             player.falling = False
             player.speed_y = 0
-            collided = True
+        else:
+            player.falling = True
     
     # Render game objects
     for player_collider in player_colliders:
         pygame.draw.rect(screen, (255, 255, 255), player_collider)
 
     player.draw()
+    # pygame.draw.rect(screen, (255, 0, 0), player.ground_collider) # Render ground collider of player
 
     pygame.display.flip()
     clock.tick(60)  # limits FPS to 60
