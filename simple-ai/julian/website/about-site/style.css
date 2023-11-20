@@ -16,8 +16,10 @@ body {
 }
 
 #aboutTextAllign {
+	align-items: center;
 	justify-content: center;
 	display: flex;
+	flex-direction: column;
 }
 
 #aboutText {
@@ -28,6 +30,21 @@ body {
 	background-color: #1b2432;
 	height: fit-content;
 	width: 500px;
+	border: solid;
+}
+
+.buttonGeneral{
+	border: solid;
+	background-color: #1b2432;
+	color: #d1d1d7;
+	text-decoration: none;
+	margin: 20px;
+	font-size: 20px;
+	padding: 5px;
+	transition: 0.3s;
+}
+.buttonGeneral:hover{
+	color: #8338ec;
 }
 
 #fancy {
