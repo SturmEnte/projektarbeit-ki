@@ -1,8 +1,12 @@
+:root {
+	--main-color: #0077b6;
+}
+
 body {
 	font-family: "Trebuchet MS", sans-serif;
 	margin: 0;
 	text-align: center;
-	color: #0077b6;
+	color: var(--main-color);
 }
 
 #navBar {
@@ -12,32 +16,44 @@ body {
 	border-bottom: solid;
 	border-width: 1px;
 	border-color: #acacac;
-	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 10px;
+}
+
+.nav-section {
+	width: 100%;
+	height: 100%;
+}
+
+#middle {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 #navText {
-	margin: 0;
-	padding: 0;
-	padding-top: 10px;
 	transition: 0.5s;
 }
 
-.buttonGeneral {
+#right {
 	display: flex;
-	justify-content: right;
-	border: solid;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+.buttonGeneral {
+	border: solid 3px var(--main-color);
 	padding: 5px;
-	width: fit-content;
-	color: #0077b6;
+	box-sizing: border-box;
+	margin-right: 10px; /* Abstand zum rechten Rand */
+	color: var(--main-color);
 }
 
 .buttonGeneral a {
-	color: #0077b6;
+	color: var(--main-color);
 	text-decoration: none;
-	text-align: right;
-}
-
-#colorpicker {
 }
 
 #colorpicker input {
