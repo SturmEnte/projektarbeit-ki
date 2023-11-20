@@ -30,7 +30,6 @@ class Player:
         pygame.draw.rect(self.screen, (255, 0, 255), self.rect)
 
     def jump(self):
-        self.speed_x = 200
         if not self.falling:
             self.speed_y = -JUMP_FORCE
             self.falling = True
