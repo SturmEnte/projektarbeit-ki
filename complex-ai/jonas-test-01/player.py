@@ -50,4 +50,4 @@ class Player:
             self.speed_x -= 10
 
     def get_scroll(self):
-        return self.speed_x
+        return (self.speed_x, self.speed_y)
