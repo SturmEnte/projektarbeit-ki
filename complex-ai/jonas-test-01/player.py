@@ -10,7 +10,7 @@ class Player:
         player_width = 60
         player_height = 100
 
-        self.rect = pygame.Rect(screen.get_width() / 2 - player_width, screen.get_height() / 2 - player_height, player_width, player_height)
+        self.rect = pygame.Rect(screen.get_width() / 2 - player_width / 2, screen.get_height() / 2 - player_height / 2, player_width, player_height)
         self.screen = screen
 
         self.speed_x = 0
