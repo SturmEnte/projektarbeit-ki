@@ -47,7 +47,7 @@ while running:
     # Update game objects
     player.update()
 
-    scroll_x = player.get_scroll_x()
+    scroll_x, _ = player.get_scroll()
 
     collided = False
     for player_collider in player_colliders:
@@ -57,7 +57,7 @@ while running:
             
             while player_collider.top < player.rect.top + player.rect.height:
                 player.rect.update(player.rect.left, player.rect.top - 1, player.rect.width, player.rect.height)
-
+                
             player.falling = False
             player.speed_y = 0
             collided = True
