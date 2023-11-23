@@ -16,7 +16,7 @@ scroll_y = 0
 
 player = Player(screen)
 
-player_colliders = [ground]
+player_colliders = [ground, pygame.Rect(60,screen.get_height() - 140 ,40, 40)]
 
 # Game loop
 while running:
