@@ -78,6 +78,19 @@ while running:
                 player.falling = True
                 player.fall_start = time.time()
     
+    # Center camera
+    x_difference = (screen.get_width() / 2 - player.rect.width / 2) - player.rect.left
+    y_difference = (screen.get_height() / 2 - player.rect.height / 2) - player.rect.top
+
+    player.move(x_difference, 0)
+
+    for collider in player_colliders:
+        collider.move(x_difference, 0)
+    
+    for game_object in game_objects:
+       game_object.update(game_object.left + x_difference, game_object.top + y_difference, game_object.width, game_object.height)
+    
+
     # Render game objects
     for player_collider in player_colliders:
         pygame.draw.rect(screen, (255, 255, 255), player_collider)
