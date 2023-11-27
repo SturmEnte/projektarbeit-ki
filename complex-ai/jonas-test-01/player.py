@@ -22,7 +22,7 @@ class Player:
         self.speed_y = 0
         self.speed_y_start = 0
         self.fall_start = time.time()
-        self.falling = True
+        self.falling = False
         self.relative_position = (0, 0)
 
     def update(self):
