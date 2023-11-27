@@ -39,8 +39,14 @@ class Player:
         for collider in self.side_colliders:
             collider.update(collider.left + left, collider.top + top, collider.width, collider.height)
 
-    def draw(self):
+    def draw(self, colliders=False):
         pygame.draw.rect(self.screen, (255, 0, 255), self.rect)
+
+        if colliders == True:
+            pygame.draw.rect(self.screen, (255, 0, 0), self.ground_collider) # Render ground collider of player
+            for collider in self.side_colliders:
+                pygame.draw.rect(self.screen, (255,0,0), collider)
+
 
     def jump(self):
         if not self.falling:
