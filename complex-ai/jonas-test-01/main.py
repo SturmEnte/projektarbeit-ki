@@ -16,8 +16,9 @@ scroll_y = 0
 player = Player(screen)
 
 game_objects = [
-    GameObject(0, screen.get_height() - 100, screen.get_width(), 100, (255, 255, 255)),  # Ground
-    GameObject(60, screen.get_height() - 140, 40, 40, (255, 255, 255 / 2))
+    GameObject(0, screen.get_height() - 100, screen.get_width(), 100, (255, 255, 255), screen),  # Ground
+    GameObject(60, screen.get_height() - 140, 40, 40, (255, 255, 255 / 2), screen),
+    GameObject(0, 0, 10, 10, (255, 0, 0), screen)
 ]
 
 # Game loop
@@ -82,7 +83,9 @@ while running:
     
     # Render game objects
     for game_obect in game_objects:
-        game_object.render(screen)
+        # The render function does not work for some reason. This way it works so this is an issue for later
+        # game_object.render()
+        pygame.draw.rect(screen, game_obect.color, game_obect.rect)
 
     player.draw(colliders=True)
 
