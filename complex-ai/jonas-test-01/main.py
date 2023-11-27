@@ -18,8 +18,10 @@ player = Player(screen)
 game_objects = [
     GameObject(0, screen.get_height() - 100, screen.get_width(), 100, (255, 255, 255), screen),  # Ground
     GameObject(60, screen.get_height() - 140, 40, 40, (255, 255, 255 / 2), screen),
-    GameObject(0, 0, 10, 10, (255, 0, 0), screen)
+    GameObject(0, screen.get_height() - 10, 10, 10, (255, 0, 0), screen)
 ]
+
+# print(game_objects[2].colliderect(game_objects[0].rect))
 
 # Game loop
 while running:
@@ -57,18 +59,17 @@ while running:
         game_object.move(-scroll_x, -scroll_y)
         
         # Move the player out of the ground
-        if player.rect.colliderect(game_object) and player.ground_collider.colliderect(game_object) and (player.side_colliders[0].colliderect(game_object) and player.side_colliders[1].colliderect(game_object)):
-
+        if game_object.colliderect(player.rect) and game_object.colliderect(player.ground_collider) and game_object.colliderect(player.side_colliders[0]) and game_object.colliderect(player.side_colliders[1]):
             while game_object.top < player.rect.top + player.rect.height:
                 player.move(0, -1)
 
         # Move the player out of objects to its left
-        if player.side_colliders[0].colliderect(game_object):
+        if player.side_colliders[0].colliderect(game_object.rect):
             while game_object.left + game_object.width > player.side_colliders[0].left:
                 player.move(1, 0)
         
         # Move the player out of objects to its right
-        if player.side_colliders[0].colliderect(game_object):
+        if player.side_colliders[0].colliderect(game_object.rect):
             while game_object.left < player.side_colliders[0].left + player.side_colliders[0].width:
                 player.move(-1, 0)
 
