@@ -17,7 +17,7 @@ player = Player(screen)
 
 game_objects = [
     GameObject(0, screen.get_height() - 100, screen.get_width(), 100, (255, 255, 255), screen),  # Ground
-    GameObject(60, screen.get_height() - 140, 40, 40, (255, 255, 255 / 2), screen),
+    GameObject(60, screen.get_height() - 140, 100, 40, (255, 255, 255 / 2), screen),
     GameObject(0, screen.get_height() - 10, 10, 10, (255, 0, 0), screen)
 ]
 
@@ -62,27 +62,31 @@ while running:
         
         # Move the player out of the ground
         if game_object.colliderect(player.rect) and game_object.colliderect(player.ground_collider) and game_object.colliderect(player.side_colliders[0]) and game_object.colliderect(player.side_colliders[1]):
-            while game_object.top < player.rect.top + player.rect.height:
+            # while game_object.top < player.rect.top + player.rect.height:
+            #     player.move(0, -1)
+            while game_object.colliderect(player.ground_collider):
                 player.move(0, -1)
 
         # Move the player out of objects to its left
-        # if player.side_colliders[0].colliderect(game_object.rect):
-        #     while game_object.left + game_object.width > player.side_colliders[0].left:
-        #         player.move(1, 0)
+        if player.side_colliders[0].colliderect(game_object.rect):
+            while game_object.left + game_object.width > player.side_colliders[0].left:
+                player.move(1, 0)
         
         # Move the player out of objects to its right
-        # if player.side_colliders[0].colliderect(game_object.rect):
-        #     while game_object.left < player.side_colliders[0].left + player.side_colliders[0].width:
-        #         player.move(-1, 0)
+        if player.side_colliders[0].colliderect(game_object.rect):
+            while game_object.left < player.side_colliders[0].left + player.side_colliders[0].width:
+                player.move(-1, 0)
 
         if game_object.colliderect(player.ground_collider):
             collided_with_ground = True
+            print("Collided with ground")
 
     # Check if falling
         if collided_with_ground:
-            player.falling = False
-            player.speed_y = 0
-            print("Stopped falling: " + time.time().__str__())
+            if player.falling == True:
+                player.falling = False
+                player.speed_y = 0
+                print("Stopped falling: " + time.time().__str__())
         else:
             if player.falling == False:
                 player.falling = True
