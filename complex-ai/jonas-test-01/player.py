@@ -51,8 +51,8 @@ class Player:
     def jump(self):
         if not self.falling:
             self.speed_y = -JUMP_FORCE
-            self.falling = True
-            self.fall_start = time.time()
+            # self.falling = True
+            # self.fall_start = time.time()
 
     def move_left(self, should_move):
         if should_move:
