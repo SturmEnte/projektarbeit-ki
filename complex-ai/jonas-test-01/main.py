@@ -55,6 +55,8 @@ while running:
 
     scroll_x, _ = player.get_scroll()
 
+    collided_with_ground = False
+
     for game_object in game_objects:
         game_object.move(-scroll_x, -scroll_y)
         
@@ -64,23 +66,28 @@ while running:
                 player.move(0, -1)
 
         # Move the player out of objects to its left
-        if player.side_colliders[0].colliderect(game_object.rect):
-            while game_object.left + game_object.width > player.side_colliders[0].left:
-                player.move(1, 0)
+        # if player.side_colliders[0].colliderect(game_object.rect):
+        #     while game_object.left + game_object.width > player.side_colliders[0].left:
+        #         player.move(1, 0)
         
         # Move the player out of objects to its right
-        if player.side_colliders[0].colliderect(game_object.rect):
-            while game_object.left < player.side_colliders[0].left + player.side_colliders[0].width:
-                player.move(-1, 0)
+        # if player.side_colliders[0].colliderect(game_object.rect):
+        #     while game_object.left < player.side_colliders[0].left + player.side_colliders[0].width:
+        #         player.move(-1, 0)
 
-        # Check if falling
         if game_object.colliderect(player.ground_collider):
+            collided_with_ground = True
+
+    # Check if falling
+        if collided_with_ground:
             player.falling = False
             player.speed_y = 0
+            print("Stopped falling: " + time.time().__str__())
         else:
             if player.falling == False:
                 player.falling = True
                 player.fall_start = time.time()
+                print("Started falling: " + time.time().__str__())
     
     # Render game objects
     for game_obect in game_objects:
