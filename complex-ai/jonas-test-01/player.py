@@ -30,7 +30,29 @@ class Player:
         if self.falling:
             # Fall down like in real live (10 m/s² == 10 pixels/s²)
             self.speed_y += GRAVITY * (time.time() - self.fall_start)
+
+        # x Movement        
+        n = 1
+        if self.speed_x < 0:
+            n = -1
+        elif self.speed_x == 0:
+            n = 0
         
+        print(f"x-speed: {self.speed_x} \t| n: {n}")
+
+        for _ in range(abs(round(self.speed_x))):
+            b = False # Wether to break the loop
+            for game_object in game_objects:
+                if n == -1 and game_object.colliderect(self.side_colliders[0]):
+                    b = True
+                    break
+                elif n == 1 and game_object.colliderect(self.side_colliders[1]):
+                    b = True
+                    break
+            if b:
+                break
+            self.move(n, 0)
+
         # y Movement
         n = 1
         if self.speed_y < 0:
