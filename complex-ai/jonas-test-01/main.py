@@ -73,6 +73,7 @@ while running:
             while game_object.left < player.side_colliders[0].left + player.side_colliders[0].width:
                 player.move(-1, 0)
 
+        # Check for ground collision for falling mechanic
         if player.ground_collider.colliderect(game_object.rect):
             collided_with_ground = True
 
