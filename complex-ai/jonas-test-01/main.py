@@ -21,8 +21,6 @@ game_objects = [
     GameObject(0, screen.get_height() - 10, 10, 10, (255, 0, 0), screen)
 ]
 
-# print(game_objects[2].colliderect(game_objects[0].rect))
-
 # Game loop
 while running:
     # Poll for events
@@ -58,13 +56,13 @@ while running:
     collided_with_ground = False
 
     for game_object in game_objects:
-        game_object.move(-scroll_x, -scroll_y)
+        #game_object.move(-scroll_x, -scroll_y)
         
         # Move the player out of the ground
         if game_object.colliderect(player.rect) and game_object.colliderect(player.ground_collider) and game_object.colliderect(player.side_colliders[0]) and game_object.colliderect(player.side_colliders[1]):
             # while game_object.top < player.rect.top + player.rect.height:
             #     player.move(0, -1)
-            while game_object.colliderect(player.ground_collider):
+            while game_object.colliderect(player.rect):
                 player.move(0, -1)
 
         # Move the player out of objects to its left
@@ -77,21 +75,20 @@ while running:
             while game_object.left < player.side_colliders[0].left + player.side_colliders[0].width:
                 player.move(-1, 0)
 
-        if game_object.colliderect(player.ground_collider):
+        if player.ground_collider.colliderect(game_object.rect):
             collided_with_ground = True
-            print("Collided with ground")
 
     # Check if falling
-        if collided_with_ground:
-            if player.falling == True:
-                player.falling = False
-                player.speed_y = 0
-                print("Stopped falling: " + time.time().__str__())
-        else:
-            if player.falling == False:
-                player.falling = True
-                player.fall_start = time.time()
-                print("Started falling: " + time.time().__str__())
+    if collided_with_ground:
+        if player.falling == True:
+            player.falling = False
+            player.speed_y = 0
+            print("Stopped falling: " + time.time().__str__())
+    else:
+        if player.falling == False:
+            player.falling = True
+            player.fall_start = time.time()
+            print("Started falling: " + time.time().__str__())
     
     # Render game objects
     for game_obect in game_objects:
