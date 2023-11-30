@@ -47,7 +47,6 @@ class Player:
             for collider in self.side_colliders:
                 pygame.draw.rect(self.screen, (255,0,0), collider)
 
-
     def jump(self):
         if not self.falling:
             self.speed_y = -JUMP_FORCE
