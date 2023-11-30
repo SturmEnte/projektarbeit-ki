@@ -56,12 +56,10 @@ while running:
     collided_with_ground = False
 
     for game_object in game_objects:
-        #game_object.move(-scroll_x, -scroll_y)
+        game_object.move(-scroll_x, -scroll_y)
         
         # Move the player out of the ground
         if game_object.colliderect(player.rect) and game_object.colliderect(player.ground_collider) and game_object.colliderect(player.side_colliders[0]) and game_object.colliderect(player.side_colliders[1]):
-            # while game_object.top < player.rect.top + player.rect.height:
-            #     player.move(0, -1)
             while game_object.colliderect(player.rect):
                 player.move(0, -1)
 
