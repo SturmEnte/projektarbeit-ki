@@ -31,15 +31,15 @@ class Player:
             # Fall down like in real live (10 m/s² == 10 pixels/s²)
             self.speed_y += GRAVITY * (time.time() - self.fall_start)
         
+        # y Movement
         n = 1
         if self.speed_y < 0:
             n = -1
         elif self.speed_y == 0:
             n = 0
         
-        print(f"y-speed: {self.speed_y} | n: {n}")
+        print(f"y-speed: {self.speed_y} \t| n: {n}")
 
-        # y Movement
         for _ in range(abs(round(self.speed_y))):
             b = False # Wether to break the loop
             for game_object in game_objects:
@@ -51,7 +51,7 @@ class Player:
             self.move(0, n)
 
         #self.relative_position = (self.relative_position[0] + self.speed_x, self.relative_position[1] + self.speed_y)
-        self.move(self.speed_x, 0)
+        #self.move(self.speed_x, 0)
 
     def move(self, left, top):
         self.rect.update(self.rect.left + left, self.rect.top + top, self.rect.width, self.rect.height)
