@@ -64,14 +64,17 @@ def wOrBTextChoose(l):
 #returns rgb-values, the relative-Luminicance and 0 || 1 if white or black text is used. 
 
 #needs to be reworked to be all in one textfile. For now it will work!
-def resultOutData(red, green, blue, l, a):
-        learningData = open(f"results{i}.txt","w")
-        learningData.write(f"{red, green, blue}" " | " f"{l}" " | " f"{a}")
-        learningData.close
+learningData = open(f"results{random.randint(1, 10000000)}.txt","a")
+
+def resultOutData(red, green, blue, a):
+        learningData.write(f"{red, green, blue}" " | " f"{a}\n")
 
 #Calculate all the relative Luminicance's and look if white or black text should be used. 
 #and also creates textfiles with resulst of one single(!) itteration. 
 for i in range(colorIterations):
     l = relativeLuminicance(red[i], green[i], blue[i])
     wOrBTextChoose(l)
-    resultOutData(red[i], green[i], blue[i], l, wOrB[i])
+    resultOutData(red[i], green[i], blue[i], wOrB[i])
+
+learningData.flush()
+learningData.close()
