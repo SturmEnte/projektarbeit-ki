@@ -49,7 +49,7 @@ while running:
     screen.fill((0, 128, 255))
 
     # Update game objects
-    player.update()
+    player.update(game_objects)
 
     scroll_x, _ = player.get_scroll()
 

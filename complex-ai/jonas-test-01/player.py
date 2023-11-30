@@ -1,5 +1,6 @@
 import pygame
 import time
+import math
 
 GRAVITY = 8
 JUMP_FORCE = 15
@@ -25,13 +26,32 @@ class Player:
         self.falling = False
         self.relative_position = (0, 0)
 
-    def update(self):
+    def update(self, game_objects):
         if self.falling:
             # Fall down like in real live (10 m/s² == 10 pixels/s²)
             self.speed_y += GRAVITY * (time.time() - self.fall_start)
+        
+        n = 1
+        if self.speed_y < 0:
+            n = -1
+        elif self.speed_y == 0:
+            n = 0
+        
+        print(f"y-speed: {self.speed_y} | n: {n}")
 
-        self.relative_position = (self.relative_position[0] + self.speed_x, self.relative_position[1] + self.speed_y)
-        self.move(self.speed_x, self.speed_y)
+        # y Movement
+        for _ in range(abs(round(self.speed_y))):
+            b = False # Wether to break the loop
+            for game_object in game_objects:
+                if n == 1 and game_object.colliderect(self.ground_collider):
+                    b = True
+                    break
+            if b:
+                break
+            self.move(0, n)
+
+        #self.relative_position = (self.relative_position[0] + self.speed_x, self.relative_position[1] + self.speed_y)
+        self.move(self.speed_x, 0)
 
     def move(self, left, top):
         self.rect.update(self.rect.left + left, self.rect.top + top, self.rect.width, self.rect.height)
