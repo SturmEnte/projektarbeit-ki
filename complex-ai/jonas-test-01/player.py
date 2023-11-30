@@ -109,3 +109,6 @@ class Player:
 
     def get_scroll(self):
         return (self.speed_x, self.speed_y)
+    
+    def get_x_offset(self, width):
+        return ((width / 2) - (self.rect.width / 2)) - self.rect.left

@@ -18,7 +18,6 @@ player = Player(screen)
 game_objects = [
     GameObject(0, screen.get_height() - 100, screen.get_width(), 100, (255, 255, 255), screen),  # Ground
     GameObject(60, screen.get_height() - 140, 100, 40, (255, 255, 255 / 2), screen),
-    GameObject(0, screen.get_height() - 10, 10, 10, (255, 0, 0), screen)
 ]
 
 # Game loop
@@ -89,6 +88,14 @@ while running:
             player.fall_start = time.time()
             print("Started falling: " + time.time().__str__())
     
+    # Move "camera"
+    difference = player.get_x_offset(screen.get_width())
+
+    print(f"Difference: {difference}")
+
+    for game_object in game_objects:
+        game_object.move(-difference, 0)
+
     # Render game objects
     for game_obect in game_objects:
         # The render function does not work for some reason. This way it works so this is an issue for later
