@@ -105,6 +105,11 @@ while running:
 
     player.draw(colliders=True)
 
+    fps_text = f"FPS: {int(clock.get_fps())}"
+    font = pygame.font.Font(None, 24)
+    fps_surface = font.render(fps_text, True, (0, 0, 255))
+    screen.blit(fps_surface, (0, 0))
+
     pygame.display.flip()
     clock.tick(60)
 
