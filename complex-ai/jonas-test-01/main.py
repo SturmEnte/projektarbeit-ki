@@ -13,6 +13,7 @@ running = True
 # Variables
 scroll_x = 0
 scroll_y = 0
+game_over = False
 
 player = Player(screen)
 
@@ -89,6 +90,10 @@ while running:
             player.fall_start = time.time()
             print("Started falling: " + time.time().__str__())
 
+    if player.rect.top >= screen.get_height() + player.rect.height:
+        print("Game Over")
+        game_over = True
+
     # Render game objects
     for game_object in game_objects:
         # The render function does not work for some reason. This way it works so this is an issue for later
@@ -96,6 +101,15 @@ while running:
         pygame.draw.rect(screen, game_object.color, game_object.rect)
 
     player.draw(colliders=True)
+
+    # Display the game over text
+    if game_over:
+        font = pygame.font.SysFont(None, 100)
+        text_surface = font.render("Game Over", True, (255, 0, 0))
+        text_width, text_height = text_surface.get_size()
+        text_center_x = screen.get_width() // 2 - text_width // 2
+        text_center_y = screen.get_height() // 2 - text_height // 2
+        screen.blit(text_surface, (text_center_x, text_center_y))
 
     # FPS display
     fps_text = f"FPS: {int(clock.get_fps())}"
