@@ -105,6 +105,7 @@ while running:
 
     player.draw(colliders=True)
 
+    # FPS display
     fps_text = f"FPS: {int(clock.get_fps())}"
     font = pygame.font.Font(None, 24)
     fps_surface = font.render(fps_text, True, (0, 0, 255))
