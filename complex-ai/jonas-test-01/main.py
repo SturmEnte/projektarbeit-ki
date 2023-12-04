@@ -38,6 +38,9 @@ while running:
             
             if event.key == pygame.K_d:
                 player.move_right(True)
+
+            # if event.key == pygame.K_g:
+            #     game_objects.append(GameObject(screen.get_width() / 2 + 10, screen.get_height() - 120, 100, 100, (0, 255, 0), screen))
         
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_a:
