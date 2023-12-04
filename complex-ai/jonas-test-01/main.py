@@ -98,10 +98,10 @@ while running:
         game_object.move(-difference, 0)
 
     # Render game objects
-    for game_obect in game_objects:
+    for game_object in game_objects:
         # The render function does not work for some reason. This way it works so this is an issue for later
         # game_object.render()
-        pygame.draw.rect(screen, game_obect.color, game_obect.rect)
+        pygame.draw.rect(screen, game_object.color, game_object.rect)
 
     player.draw(colliders=True)
 
