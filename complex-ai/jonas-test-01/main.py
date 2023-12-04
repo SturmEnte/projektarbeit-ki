@@ -51,12 +51,12 @@ while running:
     # Update game objects
     player.update(game_objects)
 
-    scroll_x, _ = player.get_scroll()
+    #scroll_x, _ = player.get_scroll()
 
     collided_with_ground = False
 
     for game_object in game_objects:
-        game_object.move(-scroll_x, -scroll_y)
+        #game_object.move(-scroll_x, -scroll_y)
         
         # Move the player out of the ground
         if game_object.colliderect(player.rect) and game_object.colliderect(player.ground_collider) and game_object.colliderect(player.side_colliders[0]) and game_object.colliderect(player.side_colliders[1]):
@@ -90,12 +90,13 @@ while running:
             print("Started falling: " + time.time().__str__())
     
     # Move "camera"
-    difference = player.get_x_offset(screen.get_width())
+    # difference = player.get_x_offset(screen.get_width())
 
-    print(f"Difference: {difference}")
+    # print(f"Difference: {difference}")
 
-    for game_object in game_objects:
-        game_object.move(-difference, 0)
+    # player.move(difference, 0)
+    # for game_object in game_objects:
+    #     game_object.move(difference, 0)
 
     # Render game objects
     for game_object in game_objects:
