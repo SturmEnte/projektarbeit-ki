@@ -51,7 +51,7 @@ class Player:
                     break
             if b:
                 break
-            self.move(n, 0)
+            self.move(n, 0, game_objects)
 
         # y Movement
         n = 1
@@ -70,16 +70,19 @@ class Player:
                     break
             if b:
                 break
-            self.move(0, n)
+            self.move(0, n, game_objects)
 
         #self.relative_position = (self.relative_position[0] + self.speed_x, self.relative_position[1] + self.speed_y)
         #self.move(self.speed_x, 0)
 
-    def move(self, left, top):
-        self.rect.update(self.rect.left + left, self.rect.top + top, self.rect.width, self.rect.height)
-        self.ground_collider.update(self.ground_collider.left + left, self.ground_collider.top + top, self.ground_collider.width, self.ground_collider.height)
+    def move(self, left, top, game_objects):
+        self.rect.update(self.rect.left, self.rect.top + top, self.rect.width, self.rect.height)
+        self.ground_collider.update(self.ground_collider.left, self.ground_collider.top + top, self.ground_collider.width, self.ground_collider.height)
         for collider in self.side_colliders:
-            collider.update(collider.left + left, collider.top + top, collider.width, collider.height)
+            collider.update(collider.left, collider.top + top, collider.width, collider.height)
+        
+        for game_object in game_objects:
+            game_object.move(-left, 0)
 
     def draw(self, colliders=False):
         pygame.draw.rect(self.screen, (255, 0, 255), self.rect)
