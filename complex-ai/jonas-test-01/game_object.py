@@ -9,7 +9,7 @@ class GameObject:
         self.update_position_vars()
 
     def move(self, x, y):
-        self.rect.move(x, y)
+        self.rect.update(self.rect.left + x, self.rect.top + y, self.rect.width, self.rect.height)
         self.update_position_vars()
 
     # def render(self):
