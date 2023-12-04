@@ -88,15 +88,6 @@ while running:
             player.falling = True
             player.fall_start = time.time()
             print("Started falling: " + time.time().__str__())
-    
-    # Move "camera"
-    # difference = player.get_x_offset(screen.get_width())
-
-    # print(f"Difference: {difference}")
-
-    # player.move(difference, 0)
-    # for game_object in game_objects:
-    #     game_object.move(difference, 0)
 
     # Render game objects
     for game_object in game_objects:
