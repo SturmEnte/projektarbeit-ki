@@ -52,8 +52,6 @@ while running:
     # Update game objects
     player.update(game_objects)
 
-    #scroll_x, _ = player.get_scroll()
-
     collided_with_ground = False
 
     for game_object in game_objects:
@@ -63,16 +61,6 @@ while running:
         if game_object.colliderect(player.rect) and game_object.colliderect(player.ground_collider) and game_object.colliderect(player.side_colliders[0]) and game_object.colliderect(player.side_colliders[1]):
             while game_object.colliderect(player.rect):
                 player.move(0, -1)
-
-        # Move the player out of objects to its left
-        # if player.side_colliders[0].colliderect(game_object.rect):
-        #     while game_object.left + game_object.width > player.side_colliders[0].left:
-        #         player.move(1, 0)
-        
-        # Move the player out of objects to its right
-        # if player.side_colliders[0].colliderect(game_object.rect):
-        #     while game_object.left < player.side_colliders[0].left + player.side_colliders[0].width:
-        #         player.move(-1, 0)
 
         # Check for ground collision for falling mechanic
         if player.ground_collider.colliderect(game_object.rect):
