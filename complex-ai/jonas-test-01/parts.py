@@ -6,21 +6,32 @@ class Parts:
     def __init__(self, s_width, s_height):
         self.parts = [
             [
+                s_width,
                 (0, s_height-100, s_width, 100, (255, 255, 255))
             ],
             [
+                2 * s_width + 100,
                 (0, s_height-100, s_width, 100, (255, 0, 255)),
                 (s_width + 100, s_height-100, s_width, 100, (255, 0, 255))
             ]
         ]
 
+        self.spawned_parts = []
+
     def spawn_part_n(self, start_x, n, screen):
         part = self.parts[n]
         
+        ids = []
         game_objects = []
 
-        for object in part:
-            game_objects.append(GameObject(object[0] + start_x, object[1], object[2], object[3], object[4], screen))
+        for i, object in enumerate(part):
+            if i == 0:
+                continue
+            game_object = GameObject(object[0] + start_x, object[1], object[2], object[3], object[4], screen)
+            ids.append(game_object.id)
+            game_objects.append(game_object)
+
+        self.spawned_parts.append((part[0], ids))
 
         return game_objects
 
