@@ -2,10 +2,11 @@ import pygame
 
 class GameObject:
 
-    def __init__(self, left, top, width, height, color, screen):
+    def __init__(self, left, top, width, height, color, screen, id=0):
         self.rect = pygame.Rect(left, top, width, height)
         self.color = color
         self.screen = screen
+        self.id = id
         self.update_position_vars()
 
     def move(self, x, y):
