@@ -21,6 +21,14 @@ class Parts:
                 # Seperation lines
                 (0, s_height - DEFAULT_GROUND_HEIGHT, 1, DEFAULT_GROUND_HEIGHT, (255, 0, 0)),
                 (200 + 7 * 100 + 200, s_height - DEFAULT_GROUND_HEIGHT, 1, DEFAULT_GROUND_HEIGHT, (255, 0, 0)),
+            ],
+            [
+                2 * 200 + 7 * 100,
+                (0, s_height - DEFAULT_GROUND_HEIGHT, 200, DEFAULT_GROUND_HEIGHT, DEFAULT_GROUND_COLOR),
+                (200 + 7 * 100, s_height - DEFAULT_GROUND_HEIGHT, 200, DEFAULT_GROUND_HEIGHT, DEFAULT_GROUND_COLOR),
+                # Seperation lines
+                (0, s_height - DEFAULT_GROUND_HEIGHT, 1, DEFAULT_GROUND_HEIGHT, (255, 0, 0)),
+                (200 + 7 * 100 + 200, s_height - DEFAULT_GROUND_HEIGHT, 1, DEFAULT_GROUND_HEIGHT, (255, 0, 0)),
             ]
         ]
 
