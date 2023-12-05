@@ -24,5 +24,6 @@ class Parts:
         return game_objects
 
     def spawn_random_part(self, start_x, screen):
-        print(len(self.parts))
-        return self.spawn_part(start_x, random(0, len(self.parts) - 1), screen)
+        n = random(0, len(self.parts))
+        print(f"Spawned part {n}")
+        return self.spawn_part(start_x, n, screen)
