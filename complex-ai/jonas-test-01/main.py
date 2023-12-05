@@ -2,6 +2,7 @@ import pygame
 import time
 from player import Player
 from game_object import GameObject
+from parts import Parts
 
 # Pygame setup
 pygame.init()
@@ -17,10 +18,16 @@ game_over = False
 
 player = Player(screen)
 
-game_objects = [
-    GameObject(0, screen.get_height() - 100, screen.get_width(), 100, (255, 255, 255), screen),  # Ground
-    GameObject(60, screen.get_height() - 140, 100, 40, (255, 255, 255 / 2), screen),
-]
+part_manager = Parts(screen.get_width(), screen.get_height())
+
+# game_objects = [
+#     GameObject(0, screen.get_height() - 100, screen.get_width(), 100, (255, 255, 255), screen),  # Ground
+#     GameObject(60, screen.get_height() - 140, 100, 40, (255, 255, 255 / 2), screen),
+# ]
+
+game_objects = []
+for game_object in part_manager.spawn_random_part(0, screen):
+    game_objects.append(game_object)
 
 # Game loop
 while running:
@@ -39,8 +46,8 @@ while running:
             if event.key == pygame.K_d:
                 player.move_right(True)
 
-            # if event.key == pygame.K_g:
-            #     game_objects.append(GameObject(screen.get_width() / 2 + 10, screen.get_height() - 120, 100, 100, (0, 255, 0), screen))
+            if event.key == pygame.K_g:
+                game_objects.append(GameObject(screen.get_width() / 2 + 10, screen.get_height() - 120, 100, 100, (0, 255, 0), screen))
         
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_a:
