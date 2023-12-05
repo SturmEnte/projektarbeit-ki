@@ -1,6 +1,5 @@
 import pygame
 import time
-import math
 
 GRAVITY = 8
 JUMP_FORCE = 15
