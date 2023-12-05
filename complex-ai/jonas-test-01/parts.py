@@ -9,7 +9,8 @@ class Parts:
                 (0, s_height-100, s_width, 100, (255, 255, 255))
             ],
             [
-                (0, s_height-100, s_width, 100, (255, 0, 255))
+                (0, s_height-100, s_width, 100, (255, 0, 255)),
+                (s_width + 100, s_height-100, s_width, 100, (255, 0, 255))
             ]
         ]
 
