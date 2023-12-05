@@ -9,14 +9,15 @@ class Parts:
         # After that comes the most left game object of that part
         self.parts = [
             [
-                s_width,
-                (0, s_height-100, s_width, 100, (255, 255, 255))
-            ],
-            [
                 2 * s_width + 100,
                 (0, s_height-100, s_width, 100, (255, 0, 255)),
                 (s_width + 100, s_height-100, s_width, 100, (255, 0, 255))
             ]
+        ]
+
+        self.start_part = [
+            s_width,
+            (0, s_height-100, s_width, 100, (255, 255, 255))
         ]
 
         self.s_width = s_width
@@ -25,7 +26,14 @@ class Parts:
 
     def spawn_part_n(self, start_x, n, screen):
         part = self.parts[n]
-        
+        return self.spawn_part(start_x, part, screen)
+
+    def spawn_random_part(self, start_x, screen):
+        n = random(0, len(self.parts))
+        print(f"Spawned part {n}")
+        return self.spawn_part_n(start_x, n, screen)
+
+    def spawn_part(self, start_x, part, screen):
         ids = []
         game_objects = []
 
@@ -39,12 +47,10 @@ class Parts:
         self.spawned_parts.append((part[0], ids))
 
         return game_objects
-
-    def spawn_random_part(self, start_x, screen):
-        n = random(0, len(self.parts))
-        print(f"Spawned part {n}")
-        return self.spawn_part_n(start_x, n, screen)
     
+    def spawn_start_part(self, screen):
+        return self.spawn_part(0, self.start_part, screen)
+
     def update(self, game_objects, screen):
         part = self.spawned_parts[len(self.spawned_parts) - 1]
         id = part[1][0]

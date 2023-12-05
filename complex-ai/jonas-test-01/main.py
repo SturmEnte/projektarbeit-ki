@@ -26,7 +26,7 @@ part_manager = Parts(screen.get_width(), screen.get_height())
 # ]
 
 game_objects = []
-for game_object in part_manager.spawn_random_part(0, screen):
+for game_object in part_manager.spawn_start_part(screen):
     game_objects.append(game_object)
 
 # Game loop
