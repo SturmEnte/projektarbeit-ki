@@ -20,11 +20,6 @@ player = Player(screen)
 
 part_manager = Parts(screen.get_width(), screen.get_height())
 
-# game_objects = [
-#     GameObject(0, screen.get_height() - 100, screen.get_width(), 100, (255, 255, 255), screen),  # Ground
-#     GameObject(60, screen.get_height() - 140, 100, 40, (255, 255, 255 / 2), screen),
-# ]
-
 game_objects = []
 for game_object in part_manager.spawn_start_part(screen):
     game_objects.append(game_object)
@@ -100,8 +95,6 @@ while running:
 
     # Render game objects
     for game_object in game_objects:
-        # The render function does not work for some reason. This way it works so this is an issue for later
-        # game_object.render()
         pygame.draw.rect(screen, game_object.color, game_object.rect)
 
     player.draw(colliders=True)

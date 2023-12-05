@@ -13,10 +13,6 @@ class GameObject:
         self.rect.update(self.rect.left + x, self.rect.top + y, self.rect.width, self.rect.height)
         self.update_position_vars()
 
-    # def render(self):
-    #     print(self.color)
-    #     pygame.draw.rect(self.screen, self.color, self.rect)
-
     def update_position_vars(self):
         self.left = self.rect.width
         self.top = self.rect.top

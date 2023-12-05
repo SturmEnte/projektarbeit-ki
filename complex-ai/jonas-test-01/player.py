@@ -73,9 +73,6 @@ class Player:
 
         print(f"Travelled distance: {self.traveled_distance}")
 
-        #self.relative_position = (self.relative_position[0] + self.speed_x, self.relative_position[1] + self.speed_y)
-        #self.move(self.speed_x, 0)
-
     def move(self, left, top, game_objects):
         self.rect.update(self.rect.left, self.rect.top + top, self.rect.width, self.rect.height)
         self.ground_collider.update(self.ground_collider.left, self.ground_collider.top + top, self.ground_collider.width, self.ground_collider.height)
@@ -98,8 +95,6 @@ class Player:
     def jump(self):
         if not self.falling:
             self.speed_y = -JUMP_FORCE
-            # self.falling = True
-            # self.fall_start = time.time()
 
     def move_left(self, should_move):
         if should_move:
@@ -112,9 +107,3 @@ class Player:
             self.speed_x += 10
         else:
             self.speed_x -= 10
-
-    # def get_scroll(self):
-    #     return (self.speed_x, self.speed_y)
-    
-    # def get_x_offset(self, width):
-    #     return ((width / 2) - (self.rect.width / 2)) - self.rect.left
