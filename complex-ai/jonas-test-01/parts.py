@@ -11,7 +11,14 @@ class Parts:
             [
                 2 * s_width + 100,
                 (0, s_height-100, s_width, 100, (255, 0, 255)),
-                (s_width + 100, s_height-100, s_width, 100, (255, 0, 255))
+                (s_width + 100, s_height - 100, s_width, 100, (255, 0, 255)),
+                (2 * s_width + 100, s_height - 120, 10, 20, (255,0,255))
+            ],
+            [
+                2 * s_width + 100,
+                (0, s_height-100, s_width, 100, (0, 0, 255)),
+                (s_width + 100, s_height - 100, s_width, 100, (0, 0, 255)),
+                (2 * s_width + 100, s_height - 120, 10, 20, (0,0,255))
             ]
         ]
 
