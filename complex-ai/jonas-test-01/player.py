@@ -38,7 +38,7 @@ class Player:
         elif self.speed_x == 0:
             n = 0
         
-        print(f"x-speed: {self.speed_x} \t| n: {n}")
+        #print(f"x-speed: {self.speed_x} \t| n: {n}")
 
         for _ in range(abs(round(self.speed_x))):
             b = False # Wether to break the loop
@@ -60,7 +60,7 @@ class Player:
         elif self.speed_y == 0:
             n = 0
         
-        print(f"y-speed: {self.speed_y} \t| n: {n}")
+        #print(f"y-speed: {self.speed_y} \t| n: {n}")
 
         for _ in range(abs(round(self.speed_y))):
             b = False # Wether to break the loop
