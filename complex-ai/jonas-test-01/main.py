@@ -92,6 +92,12 @@ while running:
         print("Game Over")
         game_over = True
 
+    # Spawn new parts
+    new_game_objects = part_manager.update(game_objects, screen)
+    if new_game_objects:
+        for game_object in new_game_objects:
+            game_objects.append(game_object)
+
     # Render game objects
     for game_object in game_objects:
         # The render function does not work for some reason. This way it works so this is an issue for later
