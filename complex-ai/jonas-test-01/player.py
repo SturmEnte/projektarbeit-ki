@@ -23,7 +23,7 @@ class Player:
         self.speed_y_start = 0
         self.fall_start = time.time()
         self.falling = False
-        self.relative_position = (0, 0)
+        self.traveled_distance = 0
 
     def update(self, game_objects):
         if self.falling:
@@ -71,6 +71,8 @@ class Player:
                 break
             self.move(0, n, game_objects)
 
+        print(f"Travelled distance: {self.traveled_distance}")
+
         #self.relative_position = (self.relative_position[0] + self.speed_x, self.relative_position[1] + self.speed_y)
         #self.move(self.speed_x, 0)
 
@@ -82,6 +84,8 @@ class Player:
         
         for game_object in game_objects:
             game_object.move(-left, 0)
+        
+        self.traveled_distance += left
 
     def draw(self, colliders=False):
         pygame.draw.rect(self.screen, (255, 0, 255), self.rect)
@@ -109,8 +113,8 @@ class Player:
         else:
             self.speed_x -= 10
 
-    def get_scroll(self):
-        return (self.speed_x, self.speed_y)
+    # def get_scroll(self):
+    #     return (self.speed_x, self.speed_y)
     
-    def get_x_offset(self, width):
-        return ((width / 2) - (self.rect.width / 2)) - self.rect.left
+    # def get_x_offset(self, width):
+    #     return ((width / 2) - (self.rect.width / 2)) - self.rect.left
