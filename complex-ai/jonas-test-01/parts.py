@@ -2,6 +2,9 @@ from game_object import GameObject
 from random import randrange as random
 from utils import generate_id
 
+DEFAULT_GROUND_HEIGHT = 100
+DEFAULT_GROUND_COLOR = (255, 255, 255)
+
 class Parts:
 
     def __init__(self, s_width, s_height):
@@ -9,18 +12,31 @@ class Parts:
         # After that comes the most left game object of that part
         self.parts = [
             [
-                2 * s_width + 100,
-                (0, s_height-100, s_width, 100, (255, 0, 255)),
-                (s_width + 100, s_height - 100, s_width, 100, (255, 0, 255)),
-                (2 * s_width + 100, s_height - 120, 10, 20, (255,0,255))
-            ],
-            [
-                2 * s_width + 100,
-                (0, s_height-100, s_width, 100, (0, 0, 255)),
-                (s_width + 100, s_height - 100, s_width, 100, (0, 0, 255)),
-                (2 * s_width + 100, s_height - 120, 10, 20, (0,0,255))
+                2 * 200 + 7 * 100,
+                (0, s_height - DEFAULT_GROUND_HEIGHT, 200, DEFAULT_GROUND_HEIGHT, DEFAULT_GROUND_COLOR),
+                (200 + 1 * 100, s_height - DEFAULT_GROUND_HEIGHT, 100, DEFAULT_GROUND_HEIGHT, DEFAULT_GROUND_COLOR),
+                (200 + 3 * 100, s_height - DEFAULT_GROUND_HEIGHT, 100, DEFAULT_GROUND_HEIGHT, DEFAULT_GROUND_COLOR),
+                (200 + 5 * 100, s_height - DEFAULT_GROUND_HEIGHT, 100, DEFAULT_GROUND_HEIGHT, DEFAULT_GROUND_COLOR),
+                (200 + 7 * 100, s_height - DEFAULT_GROUND_HEIGHT, 200, DEFAULT_GROUND_HEIGHT, DEFAULT_GROUND_COLOR)
             ]
         ]
+
+
+        # Test parts
+        # self.parts = [
+        #     [
+        #         2 * s_width + 100,
+        #         (0, s_height-100, s_width, 100, (255, 0, 255)),
+        #         (s_width + 100, s_height - 100, s_width, 100, (255, 0, 255)),
+        #         (2 * s_width + 100, s_height - 120, 10, 20, (255,0,255))
+        #     ],
+        #     [
+        #         2 * s_width + 100,
+        #         (0, s_height-100, s_width, 100, (0, 0, 255)),
+        #         (s_width + 100, s_height - 100, s_width, 100, (0, 0, 255)),
+        #         (2 * s_width + 100, s_height - 120, 10, 20, (0,0,255))
+        #     ]
+        # ]
 
         self.start_part = [
             s_width,
