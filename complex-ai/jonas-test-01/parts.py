@@ -46,7 +46,19 @@ class Parts:
                 # Seperation lines
                 (0, s_height - DEFAULT_GROUND_HEIGHT, 1, DEFAULT_GROUND_HEIGHT, (255, 0, 0)),
                 (200 + 10 * 100 + 200, s_height - DEFAULT_GROUND_HEIGHT, 1, DEFAULT_GROUND_HEIGHT, (255, 0, 0)),
-            ]
+            ],
+            # short - long - short
+            [
+                2 * 200 + 11 * 100,
+                (0, s_height - DEFAULT_GROUND_HEIGHT, 200, DEFAULT_GROUND_HEIGHT, DEFAULT_GROUND_COLOR),
+                (200 + 1 * 100, s_height - DEFAULT_GROUND_HEIGHT, 100, DEFAULT_GROUND_HEIGHT, DEFAULT_GROUND_COLOR),
+                (200 + 5 * 100, s_height - DEFAULT_GROUND_HEIGHT, 100, DEFAULT_GROUND_HEIGHT, DEFAULT_GROUND_COLOR),
+                (200 + 9 * 100, s_height - DEFAULT_GROUND_HEIGHT, 100, DEFAULT_GROUND_HEIGHT, DEFAULT_GROUND_COLOR),
+                (200 + 11 * 100, s_height - DEFAULT_GROUND_HEIGHT, 200, DEFAULT_GROUND_HEIGHT, DEFAULT_GROUND_COLOR),
+                # Seperation lines
+                (0, s_height - DEFAULT_GROUND_HEIGHT, 1, DEFAULT_GROUND_HEIGHT, (255, 0, 0)),
+                (200 + 11 * 100 + 200, s_height - DEFAULT_GROUND_HEIGHT, 1, DEFAULT_GROUND_HEIGHT, (255, 0, 0)),
+            ],
         ]
 
 
