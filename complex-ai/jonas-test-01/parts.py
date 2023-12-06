@@ -11,24 +11,29 @@ class Parts:
         # The first entry in a part is the width of the part
         # After that comes the most left game object of that part
         self.parts = [
+            # Mid jumps
             [
-                2 * 200 + 7 * 100,
+                2 * 200 + 11 * 100,
                 (0, s_height - DEFAULT_GROUND_HEIGHT, 200, DEFAULT_GROUND_HEIGHT, DEFAULT_GROUND_COLOR),
-                (200 + 1 * 100, s_height - DEFAULT_GROUND_HEIGHT, 100, DEFAULT_GROUND_HEIGHT, DEFAULT_GROUND_COLOR),
-                (200 + 3 * 100, s_height - DEFAULT_GROUND_HEIGHT, 100, DEFAULT_GROUND_HEIGHT, DEFAULT_GROUND_COLOR),
+                (200 + 2 * 100, s_height - DEFAULT_GROUND_HEIGHT, 100, DEFAULT_GROUND_HEIGHT, DEFAULT_GROUND_COLOR),
                 (200 + 5 * 100, s_height - DEFAULT_GROUND_HEIGHT, 100, DEFAULT_GROUND_HEIGHT, DEFAULT_GROUND_COLOR),
-                (200 + 7 * 100, s_height - DEFAULT_GROUND_HEIGHT, 200, DEFAULT_GROUND_HEIGHT, DEFAULT_GROUND_COLOR),
+                (200 + 8 * 100, s_height - DEFAULT_GROUND_HEIGHT, 100, DEFAULT_GROUND_HEIGHT, DEFAULT_GROUND_COLOR),
+                (200 + 11 * 100, s_height - DEFAULT_GROUND_HEIGHT, 200, DEFAULT_GROUND_HEIGHT, DEFAULT_GROUND_COLOR),
                 # Seperation lines
                 (0, s_height - DEFAULT_GROUND_HEIGHT, 1, DEFAULT_GROUND_HEIGHT, (255, 0, 0)),
-                (200 + 7 * 100 + 200, s_height - DEFAULT_GROUND_HEIGHT, 1, DEFAULT_GROUND_HEIGHT, (255, 0, 0)),
+                (200 + 11 * 100 + 200, s_height - DEFAULT_GROUND_HEIGHT, 1, DEFAULT_GROUND_HEIGHT, (255, 0, 0)),
             ],
+            # Mid jumps up
             [
-                2 * 200 + 7 * 100,
+                2 * 200 + 10 * 100,
                 (0, s_height - DEFAULT_GROUND_HEIGHT, 200, DEFAULT_GROUND_HEIGHT, DEFAULT_GROUND_COLOR),
-                (200 + 7 * 100, s_height - DEFAULT_GROUND_HEIGHT, 200, DEFAULT_GROUND_HEIGHT, DEFAULT_GROUND_COLOR),
+                (200 + 1.5 * 100, s_height - DEFAULT_GROUND_HEIGHT - 50, 100, DEFAULT_GROUND_HEIGHT, DEFAULT_GROUND_COLOR),
+                (200 + 4.5 * 100, s_height - DEFAULT_GROUND_HEIGHT - 100, 100, DEFAULT_GROUND_HEIGHT, DEFAULT_GROUND_COLOR),
+                (200 + 7.5 * 100, s_height - DEFAULT_GROUND_HEIGHT - 150, 100, DEFAULT_GROUND_HEIGHT, DEFAULT_GROUND_COLOR),
+                (200 + 10 * 100, s_height - DEFAULT_GROUND_HEIGHT, 200, DEFAULT_GROUND_HEIGHT, DEFAULT_GROUND_COLOR),
                 # Seperation lines
                 (0, s_height - DEFAULT_GROUND_HEIGHT, 1, DEFAULT_GROUND_HEIGHT, (255, 0, 0)),
-                (200 + 7 * 100 + 200, s_height - DEFAULT_GROUND_HEIGHT, 1, DEFAULT_GROUND_HEIGHT, (255, 0, 0)),
+                (200 + 10 * 100 + 200, s_height - DEFAULT_GROUND_HEIGHT, 1, DEFAULT_GROUND_HEIGHT, (255, 0, 0)),
             ]
         ]
 
