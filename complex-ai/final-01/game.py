@@ -24,9 +24,9 @@ class Game():
 
         part_manager = Parts(screen.get_width(), screen.get_height())
 
-        game_objects = []
+        self.game_objects = []
         for game_object in part_manager.spawn_start_part(screen):
-            game_objects.append(game_object)
+            self.game_objects.append(game_object)
 
         # Game loop
         while running:
@@ -47,7 +47,7 @@ class Game():
                         self.player.move_right(True)
 
                     if event.key == pygame.K_g:
-                        game_objects.append(GameObject(screen.get_width() / 2 + 10, screen.get_height() - 120, 100, 100, (0, 255, 0), screen))
+                        self.game_objects.append(GameObject(screen.get_width() / 2 + 10, screen.get_height() - 120, 100, 100, (0, 255, 0), screen))
                 
                 if event.type == pygame.KEYUP:
                     if event.key == pygame.K_a:
@@ -60,11 +60,11 @@ class Game():
             screen.fill((0, 128, 255))
 
             # Update game objects
-            self.player.update(game_objects)
+            self.player.update(self.game_objects)
 
             collided_with_ground = False
 
-            for game_object in game_objects:
+            for game_object in self.game_objects:
                 #game_object.move(-scroll_x, -scroll_y)
                 
                 # Move the player out of the ground
@@ -93,13 +93,13 @@ class Game():
                 game_over = True
 
             # Spawn new parts
-            new_game_objects = part_manager.update(game_objects, screen)
+            new_game_objects = part_manager.update(self.game_objects, screen)
             if new_game_objects:
                 for game_object in new_game_objects:
-                    game_objects.append(game_object)
+                    self.game_objects.append(game_object)
 
             # Render game objects
-            for game_object in game_objects:
+            for game_object in self.game_objects:
                 pygame.draw.rect(screen, game_object.color, game_object.rect)
 
             self.player.draw(colliders=True)
