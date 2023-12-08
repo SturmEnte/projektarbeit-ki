@@ -1,4 +1,6 @@
 import tensorflow as tf
+import numpy as np
+from random import random
 
 print(tf.__version__)
 
@@ -12,7 +14,7 @@ def get_random_model():
     y_train = [ [1] ]
 
 
-    model.add(tf.keras.layers.Flatten())
+    #model.add(tf.keras.layers.Flatten())
     model.add(tf.keras.layers.Dense(128, activation=tf.nn.relu)) # 128 neurons in the layer
     model.add(tf.keras.layers.Dense(128, activation=tf.nn.relu)) # 128 neurons in the layer
     model.add(tf.keras.layers.Dense(3, activation=tf.nn.softmax)) # 3 neurons in the output layer (0: nothing, 1: go right, 2: go right and jump)
@@ -23,6 +25,18 @@ def get_random_model():
     model.predict(x_train)
 
     return model
+
+def mutate(model, rate):
+    for layer in model.layers:
+        weights, biases = layer.get_weights() # not sure if the second array are tha biases (all zeros?)
+        new_weights = np.ndarray()
+        for weight_list in weights: # weight_lists contain arrays with the length of the current layers neurons and an amount of the previous layers neuron count
+            new_weights.append(np.ndarray())
+            for weight in weight_list:
+                #if random() < rate:
+                    #new rate else \/
+                new_weights[-1].append(np.float32(0))
+        layer.set_weights([new_weights, biases])
 
 if __name__ == "__main__":
     model = get_random_model()

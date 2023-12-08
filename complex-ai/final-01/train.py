@@ -2,8 +2,8 @@ from game import Game
 from threading import Thread
 from time import sleep
 import tensorflow as tf
-import numpy as np
-from model import get_random_model
+from model import get_random_model, mutate
+from random import choice
 import sys
 
 screen_width = 1280
@@ -12,7 +12,20 @@ standard_level = 100
 player_width = 60
 max_height_element = 150
 
+models_per_generation = 10
+
 models = {}
+
+def max_or_rand(array):
+    max = array[0]
+    equal_indicies = []
+    for i, element in enumerate(array):
+        if element == max:
+            equal_indicies.append(i)
+        elif element > max:
+            max = element
+            equal_indicies = [i]
+    return choice(equal_indicies)
 
 def play_game(model):
     game = Game()
@@ -53,7 +66,9 @@ def play_game(model):
         #print(f"Distance to Object 0: {game.game_objects[0].rect.left}")
         
         predictions = model.predict([[touching_distance / (screen_width / 2), touching_y / max_height_element, nearest_distance / (screen_width / 2), nearest_y / max_height_element]]) # request prediction from model with normalized values
-        result = np.argmax(predictions[0])
+        result = max_or_rand(predictions[0])
+
+        print(f"0: {predictions[0][0]}  1: {predictions[0][1]}  2: {predictions[0][2]}")
         
         # player should stand still
         if result == 0:
@@ -91,9 +106,25 @@ def play_game(model):
 
 
 # first generation from random models (if requested)
-if len(sys.argv) >= 2 and sys.argv[1] == "from_scratch":
-    for i in range(20):
+if "from_scratch" in sys.argv:
+    for i in range(models_per_generation):
         model = get_random_model()
+        play_game(model)
+    print(models)
+    best_model = None
+    best_distance = 0
+    for model in models:
+        distance = models[model]
+        if distance > best_distance:
+            best_distance = distance
+            best_model = model
+    print(f"Best Model ({best_model}) reached a distance of {best_distance}!")
+    best_model.save("ai")
+
+while True:
+    for i in range(models_per_generation):
+        model = tf.keras.models.load_model("ai")
+        mutate(model)
         play_game(model)
     print(models)
     best_model = None
