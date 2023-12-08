@@ -17,7 +17,7 @@ class Game():
         # Variables
         scroll_x = 0
         scroll_y = 0
-        game_over = False
+        self.game_over = False
 
         self.player = Player(screen)
         print(self.player)
@@ -90,7 +90,9 @@ class Game():
 
             if self.player.rect.top >= screen.get_height() + self.player.rect.height:
                 print("Game Over")
-                game_over = True
+                self.game_over = True
+                pygame.quit()
+                break
 
             # Spawn new parts
             new_game_objects = part_manager.update(self.game_objects, screen)
@@ -105,7 +107,7 @@ class Game():
             self.player.draw(colliders=True)
 
             # Display the game over text
-            if game_over:
+            if self.game_over:
                 font = pygame.font.SysFont(None, 100)
                 text_surface = font.render("Game Over", True, (255, 0, 0))
                 text_width, text_height = text_surface.get_size()
