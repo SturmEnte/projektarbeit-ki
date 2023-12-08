@@ -13,6 +13,7 @@ player_width = 60
 max_height_element = 150
 
 models_per_generation = 10
+mutation_rate = 0.5
 
 models = {}
 
@@ -65,7 +66,7 @@ def play_game(model):
         #print(f"Normalized Values:\nTouching Distance: {touching_distance_normalized}\nTouching y: {touching_y_normalized}\nNearest Distance: {nearest_distance_normalized}\nNearest y: {nearest_y_normalized}")
         #print(f"Distance to Object 0: {game.game_objects[0].rect.left}")
         
-        predictions = model.predict([[touching_distance / (screen_width / 2), touching_y / max_height_element, nearest_distance / (screen_width / 2), nearest_y / max_height_element]]) # request prediction from model with normalized values
+        predictions = model.predict([[touching_distance_normalized, touching_y_normalized, nearest_distance_normalized, nearest_y_normalized]]) # request prediction from model with normalized values
         result = max_or_rand(predictions[0])
 
         print(f"0: {predictions[0][0]}  1: {predictions[0][1]}  2: {predictions[0][2]}")
@@ -124,7 +125,7 @@ if "from_scratch" in sys.argv:
 while True:
     for i in range(models_per_generation):
         model = tf.keras.models.load_model("ai")
-        mutate(model)
+        mutate(model, mutation_rate)
         play_game(model)
     print(models)
     best_model = None

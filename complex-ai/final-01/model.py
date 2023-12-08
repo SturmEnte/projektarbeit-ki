@@ -28,14 +28,13 @@ def get_random_model():
 
 def mutate(model, rate):
     for layer in model.layers:
-        weights, biases = layer.get_weights() # not sure if the second array are tha biases (all zeros?)
-        new_weights = np.ndarray()
-        for weight_list in weights: # weight_lists contain arrays with the length of the current layers neurons and an amount of the previous layers neuron count
-            new_weights.append(np.ndarray())
-            for weight in weight_list:
-                #if random() < rate:
-                    #new rate else \/
-                new_weights[-1].append(np.float32(0))
+        weights, biases = layer.get_weights() # not sure if the second array are the biases (all zeros?)
+        new_weights = np.ndarray(weights.shape)
+        for i, weight_list in enumerate(weights): # weight_lists contain arrays with the length of the current layers neurons and an amount of the previous layers neuron count
+            for j, weight in enumerate(weight_list):
+                if random() < rate:
+                    weight += (random() / 5)
+                new_weights[i][j] = np.float32(weight)
         layer.set_weights([new_weights, biases])
 
 if __name__ == "__main__":
