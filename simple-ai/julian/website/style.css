@@ -13,15 +13,14 @@ body {
 
 #navBar {
 	height: 60px;
-	width: 100%;
+	width: 90%;
 	background-color: var(--backround-color);
 	border-bottom: solid;
 	border-width: 1px;
 	border-color: #acacac;
 	display: flex;
-	align-items: center;
-	justify-content: center;
 	margin-bottom: 10px;
+	margin-left: 5%;	
 }
 
 .nav-section {
