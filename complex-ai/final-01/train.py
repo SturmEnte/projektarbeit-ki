@@ -10,6 +10,7 @@ screen_width = 1280
 screen_height = 720
 standard_level = 100
 player_width = 60
+max_height_element = 150
 
 models = {}
 
@@ -19,6 +20,8 @@ def play_game(model):
     game_thread.start()
     
     moving_right = False
+
+    standing_still_counter = 0
 
     while True:
         if game.initialized:
@@ -37,10 +40,19 @@ def play_game(model):
                 touching_distance = game.game_objects[i-1].rect.left + game.game_objects[i-1].rect.width - screen_width / 2 + player_width / 2
                 touching_y = screen_height - standard_level - game.game_objects[i-1].rect.top
                 break
+        nearest_distance_normalized = nearest_distance / 900 + 0.5
+        if nearest_distance_normalized > 1: # needed to correct values at game start
+            nearest_distance_normalized = 1 # (distance at game start is out of standard range)
+        touching_distance_normalized = touching_distance / 900 + 0.5
+        if touching_distance_normalized > 1:
+            touching_distance_normalized = 1
+        nearest_y_normalized = nearest_y / max_height_element
+        touching_y_normalized = touching_y / max_height_element
         #print(f"Touching Distance: {touching_distance}\nTouching y: {touching_y}\nNearest Distance: {nearest_distance}\nNearest y: {nearest_y}")
+        #print(f"Normalized Values:\nTouching Distance: {touching_distance_normalized}\nTouching y: {touching_y_normalized}\nNearest Distance: {nearest_distance_normalized}\nNearest y: {nearest_y_normalized}")
         #print(f"Distance to Object 0: {game.game_objects[0].rect.left}")
         
-        predictions = model.predict([[touching_distance, touching_y, nearest_distance, nearest_y]])
+        predictions = model.predict([[touching_distance / (screen_width / 2), touching_y / max_height_element, nearest_distance / (screen_width / 2), nearest_y / max_height_element]]) # request prediction from model with normalized values
         result = np.argmax(predictions[0])
         
         # player should stand still
@@ -66,6 +78,14 @@ def play_game(model):
         if game.game_over:
             models[model] = game.player.traveled_distance
             break
+        
+
+        if game.player.speed_x == 0:
+            standing_still_counter += 1
+            if standing_still_counter >= 20: # standing still for longer than two seconds
+                game.game_over = True
+        else:
+            standing_still_counter = 0
         
         sleep(0.1)
 

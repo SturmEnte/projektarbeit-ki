@@ -114,6 +114,8 @@ class Game():
                 text_center_x = screen.get_width() // 2 - text_width // 2
                 text_center_y = screen.get_height() // 2 - text_height // 2
                 screen.blit(text_surface, (text_center_x, text_center_y))
+                pygame.quit()
+                break
 
             # FPS display
             fps_text = f"FPS: {int(clock.get_fps())}"

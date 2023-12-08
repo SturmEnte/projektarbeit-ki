@@ -3,7 +3,6 @@ from threading import Thread
 from time import sleep
 import tensorflow as tf
 import numpy as np
-from game_object import GameObject
 
 game = Game()
 game_thread = Thread(target=game.start)

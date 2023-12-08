@@ -9,7 +9,7 @@ def get_random_model():
     # y_train: [  ]
 
     x_train = [ [0, 0, 0, 0] ]
-    y_train = [ [0] ]
+    y_train = [ [1] ]
 
 
     model.add(tf.keras.layers.Flatten())
@@ -19,10 +19,11 @@ def get_random_model():
 
     model.compile(optimizer="adam", loss="sparse_categorical_crossentropy", metrics=["accuracy"])
 
-    model.fit(x_train, y_train, epochs=1)
+    #model.fit(x_train, y_train, epochs=1)
+    model.predict(x_train)
 
     return model
 
 if __name__ == "__main__":
     model = get_random_model()
-    model.save("ai")
+    model.save("random_ai")
