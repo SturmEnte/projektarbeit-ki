@@ -10,7 +10,7 @@ class Game():
         # Pygame setup
         pygame.init()
         screen = pygame.display.set_mode((1280, 720))
-        pygame.display.set_caption("Jump'n'run Game | Projektarbeit (Without AI)")
+        pygame.display.set_caption("Jump'n'run Game | Projektarbeit (With AI)")
         clock = pygame.time.Clock()
         running = True
 
