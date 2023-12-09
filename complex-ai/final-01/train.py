@@ -14,6 +14,8 @@ max_height_element = 150
 
 models_per_generation = 10
 mutation_rate = 0.5
+from_scratch = False
+use_multithreading = False
 
 models = {}
 
@@ -28,9 +30,9 @@ def max_or_rand(array):
             equal_indicies = [i]
     return choice(equal_indicies)
 
-def play_game(model):
+def play_game(model, render_screen=True):
     game = Game()
-    game_thread = Thread(target=game.start)
+    game_thread = Thread(target=game.start, args=(render_screen,))
     game_thread.start()
     
     moving_right = False
@@ -108,26 +110,36 @@ def play_game(model):
 
 # first generation from random models (if requested)
 if "from_scratch" in sys.argv:
-    for i in range(models_per_generation):
-        model = get_random_model()
-        play_game(model)
-    print(models)
-    best_model = None
-    best_distance = 0
-    for model in models:
-        distance = models[model]
-        if distance > best_distance:
-            best_distance = distance
-            best_model = model
-    print(f"Best Model ({best_model}) reached a distance of {best_distance}!")
-    best_model.save("ai")
+    print("Training from scratch! This will delete the current best model.")
+    answer = input("Are you sure you want to continue? y/n ")
+    if "n" in answer or "N" in  answer:
+        exit()
+    print("Starting training from scratch...")
+    from_scratch = True
+
+if "parallel" in sys.argv:
+    use_multithreading = True
 
 while True:
+    thread_list = []
     for i in range(models_per_generation):
-        model = tf.keras.models.load_model("ai")
-        mutate(model, mutation_rate)
-        play_game(model)
-    print(models)
+        
+        if from_scratch:
+            model = get_random_model()
+        else:
+            model = tf.keras.models.load_model("ai")
+            mutate(model, mutation_rate)
+        
+        if use_multithreading:
+            thread_list.append(Thread(target=play_game, args=(model,False)))
+            thread_list[-1].start()
+        else:
+            play_game(model)
+        
+    if use_multithreading:
+        for thread in thread_list:
+            thread.join()
+    #print(models)
     best_model = None
     best_distance = 0
     for model in models:
@@ -137,3 +149,5 @@ while True:
             best_model = model
     print(f"Best Model ({best_model}) reached a distance of {best_distance}!")
     best_model.save("ai")
+    models = {}
+    from_scratch = False

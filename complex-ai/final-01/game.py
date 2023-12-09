@@ -3,12 +3,17 @@ import time
 from player import Player
 from game_object import GameObject
 from parts import Parts
+import os
 
 class Game():
     initialized = False
-    def start(self):
+    def start(self, render_screen=True):
+        if not render_screen:
+            os.environ["SDL_VIDEODRIVER"] = "dummy"
+
         # Pygame setup
         pygame.init()
+        
         screen = pygame.display.set_mode((1280, 720))
         pygame.display.set_caption("Jump'n'run Game | Projektarbeit (With AI)")
         clock = pygame.time.Clock()
@@ -91,7 +96,8 @@ class Game():
             if self.player.rect.top >= screen.get_height() + self.player.rect.height:
                 print("Game Over")
                 self.game_over = True
-                pygame.quit()
+                #pygame.quit()
+                print("break")
                 break
 
             # Spawn new parts
@@ -114,7 +120,7 @@ class Game():
                 text_center_x = screen.get_width() // 2 - text_width // 2
                 text_center_y = screen.get_height() // 2 - text_height // 2
                 screen.blit(text_surface, (text_center_x, text_center_y))
-                pygame.quit()
+                #pygame.quit()
                 break
 
             # FPS display
@@ -127,4 +133,4 @@ class Game():
             clock.tick(60)
 
         self.initialized = False
-        pygame.quit()
+        #pygame.quit()
