@@ -33,9 +33,15 @@ def mutate(model, rate):
         for i, weight_list in enumerate(weights): # weight_lists contain arrays with the length of the current layers neurons and an amount of the previous layers neuron count
             for j, weight in enumerate(weight_list):
                 if random() < rate:
-                    weight += (random() / 5)
+                    weight += (random() - 0.5)
                 new_weights[i][j] = np.float32(weight)
-        layer.set_weights([new_weights, biases])
+        # layer.set_weights([new_weights, biases])
+        new_biases = np.ndarray(biases.shape)
+        for i, bias in enumerate(biases):
+            if random() < rate:
+                bias += (random() - 0.5)
+            new_biases[i] = bias
+        layer.set_weights([new_weights, new_biases])
 
 if __name__ == "__main__":
     model = get_random_model()

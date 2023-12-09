@@ -5,6 +5,7 @@ import tensorflow as tf
 from model import get_random_model, mutate
 from random import choice
 import sys
+import gc
 
 screen_width = 1280
 screen_height = 720
@@ -12,8 +13,8 @@ standard_level = 100
 player_width = 60
 max_height_element = 150
 
-models_per_generation = 10
-mutation_rate = 0.5
+models_per_generation = 50
+mutation_rate = 0.2
 from_scratch = False
 use_multithreading = False
 
@@ -149,5 +150,10 @@ while True:
             best_model = model
     print(f"Best Model ({best_model}) reached a distance of {best_distance}!")
     best_model.save("ai")
+    print("Saved current model!")
+    print("Starting Next generation in 5 seconds...")
+    sleep(5)
+    del models
+    gc.collect()
     models = {}
     from_scratch = False
