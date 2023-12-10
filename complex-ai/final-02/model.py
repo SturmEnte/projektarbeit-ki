@@ -15,8 +15,8 @@ def get_random_model():
 
 
     #model.add(tf.keras.layers.Flatten())
-    model.add(tf.keras.layers.Dense(128, activation=tf.nn.relu)) # 128 neurons in the layer
-    model.add(tf.keras.layers.Dense(128, activation=tf.nn.relu)) # 128 neurons in the layer
+    model.add(tf.keras.layers.Dense(64, activation=tf.nn.relu)) # 64 neurons in the layer
+    #model.add(tf.keras.layers.Dense(128, activation=tf.nn.relu)) # 128 neurons in the layer
     model.add(tf.keras.layers.Dense(3, activation=tf.nn.softmax)) # 3 neurons in the output layer (0: nothing, 1: go right, 2: go right and jump)
 
     model.compile(optimizer="adam", loss="sparse_categorical_crossentropy", metrics=["accuracy"])

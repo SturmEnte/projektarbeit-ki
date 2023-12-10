@@ -1,4 +1,5 @@
 from game import Game
+from seed import SEED
 from threading import Thread
 from time import sleep
 import tensorflow as tf
@@ -15,6 +16,8 @@ player_width = 60
 max_height_element = 150
 
 moving_right = False
+
+tf.random.set_seed(SEED)
 
 model = tf.keras.models.load_model("ai")
 
@@ -47,9 +50,10 @@ while True:
     player_y_normalized = player_y / max_height_element # can be grater than 1 (might cause problems)
     #print(f"Touching Distance: {touching_distance}\nTouching y: {touching_y}\nNearest Distance: {nearest_distance}\nNearest y: {nearest_y}")
     #print(f"Distance to Object 0: {game.game_objects[0].rect.left}")
-    sleep(0.1)
+    #sleep(0.1)
     
     predictions = model.predict([[touching_distance_normalized, touching_y_normalized, nearest_distance_normalized, nearest_y_normalized, player_y_normalized]]) # request prediction from model with normalized values
+    #predictions = model.predict([[touching_distance, touching_y, nearest_distance, nearest_y, player_y]]) # request prediction from model with normalized values
     result = np.argmax(predictions[0])
     
     # player should stand still

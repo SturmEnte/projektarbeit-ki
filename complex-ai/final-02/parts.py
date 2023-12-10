@@ -7,6 +7,9 @@ DEFAULT_GROUND_COLOR = (255, 255, 255)
 
 class Parts:
 
+    part_sequence = [0, 2, 1, 2, 3, 0, 1, 3, 2, 2, 3, 0, 1, 2, 3, 2, 0, 3, 1]
+    part_counter = 0
+
     def __init__(self, s_width, s_height):
         # The first entry in a part is the width of the part
         # After that comes the most left game object of that part
@@ -84,6 +87,11 @@ class Parts:
         print(f"Spawned part {n}")
         return self.spawn_part_n(start_x, n, screen)
 
+    def spawn_part_from_sequence(self, start_x, screen):
+        n = self.part_sequence[self.part_counter]
+        self.part_counter += 1
+        return self.spawn_part_n(start_x, n, screen)
+
     def spawn_part(self, start_x, part, screen):
         ids = []
         game_objects = []
@@ -110,4 +118,4 @@ class Parts:
         for game_object in game_objects:
             if game_object.id == id:
                 if game_object.rect.left <= self.s_width:
-                    return self.spawn_random_part(game_object.rect.left + width, screen)
+                    return self.spawn_part_from_sequence(game_object.rect.left + width, screen)

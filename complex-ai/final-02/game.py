@@ -7,7 +7,7 @@ import os
 
 class Game():
     initialized = False
-    def start(self, render_screen=True):
+    def start(self, render_screen=True, with_ai=True):
         if not render_screen:
             os.environ["SDL_VIDEODRIVER"] = "dummy"
 
@@ -15,7 +15,10 @@ class Game():
         pygame.init()
         
         screen = pygame.display.set_mode((1280, 720))
-        pygame.display.set_caption("Jump'n'run Game | Projektarbeit (With AI)")
+        if with_ai:
+            pygame.display.set_caption("Jump'n'run Game | Projektarbeit (With AI)")
+        else:
+            pygame.display.set_caption("Jump'n'run Game | Projektarbeit (Without AI)")
         clock = pygame.time.Clock()
         running = True
 

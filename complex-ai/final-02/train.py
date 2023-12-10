@@ -3,6 +3,7 @@ from threading import Thread
 from time import sleep
 import tensorflow as tf
 from model import get_random_model, mutate
+from seed import SEED
 from random import choice
 import sys
 import gc
@@ -17,6 +18,7 @@ models_per_generation = 50
 mutation_rate = 0.2
 from_scratch = False
 use_multithreading = False
+one_generation = False
 
 models = {}
 
@@ -73,6 +75,7 @@ def play_game(model, render_screen=True):
         print(f"Player y: {player_y}\nPlayer y normalized: {player_y_normalized}")
         
         predictions = model.predict([[touching_distance_normalized, touching_y_normalized, nearest_distance_normalized, nearest_y_normalized, player_y_normalized]]) # request prediction from model with normalized values
+        #predictions = model.predict([[touching_distance, touching_y, nearest_distance, nearest_y, player_y]]) # request prediction from model with normalized values
         result = max_or_rand(predictions[0])
 
         print(f"0: {predictions[0][0]}  1: {predictions[0][1]}  2: {predictions[0][2]}")
@@ -109,8 +112,10 @@ def play_game(model, render_screen=True):
         else:
             standing_still_counter = 0
         
-        sleep(0.1)
+        #sleep(0.1)
 
+
+tf.random.set_seed(SEED)
 
 # first generation from random models (if requested)
 if "from_scratch" in sys.argv:
@@ -124,6 +129,9 @@ if "from_scratch" in sys.argv:
 if "parallel" in sys.argv:
     use_multithreading = True
 
+if "one_generation" in sys.argv:
+    one_generation = True
+
 while True:
     thread_list = []
     for i in range(models_per_generation):
@@ -132,7 +140,8 @@ while True:
             model = get_random_model()
         else:
             model = tf.keras.models.load_model("ai")
-            mutate(model, mutation_rate)
+            if i is not 0:
+                mutate(model, mutation_rate)
         
         if use_multithreading:
             thread_list.append(Thread(target=play_game, args=(model,False)))
@@ -160,3 +169,5 @@ while True:
     gc.collect()
     models = {}
     from_scratch = False
+    if one_generation:
+        break
