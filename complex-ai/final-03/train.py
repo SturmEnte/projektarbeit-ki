@@ -35,19 +35,15 @@ def max_or_rand(array):
 
 def play_game(model, render_screen=True):
     game = Game()
-    game_thread = Thread(target=game.start, args=(render_screen,))
-    game_thread.start()
     
-    moving_right = False
+    
+    game.moving_right = False
 
-    standing_still_counter = 0
+    game.standing_still_counter = 0
 
-    while True:
-        if game.initialized:
-            break
-        sleep(0.1)
 
-    while True:
+    def callback(game):
+
         touching_distance = 0
         touching_y = 0
         nearest_distance = 0
@@ -72,7 +68,7 @@ def play_game(model, render_screen=True):
         #print(f"Touching Distance: {touching_distance}\nTouching y: {touching_y}\nNearest Distance: {nearest_distance}\nNearest y: {nearest_y}")
         #print(f"Normalized Values:\nTouching Distance: {touching_distance_normalized}\nTouching y: {touching_y_normalized}\nNearest Distance: {nearest_distance_normalized}\nNearest y: {nearest_y_normalized}")
         #print(f"Distance to Object 0: {game.game_objects[0].rect.left}")
-        #print(f"Player y: {player_y}\nPlayer y normalized: {player_y_normalized}")
+        print(f"Player y: {player_y}\nPlayer y normalized: {player_y_normalized}")
         
         predictions = model.predict([[touching_distance_normalized, touching_y_normalized, nearest_distance_normalized, nearest_y_normalized, player_y_normalized]]) # request prediction from model with normalized values
         #predictions = model.predict([[touching_distance, touching_y, nearest_distance, nearest_y, player_y]]) # request prediction from model with normalized values
@@ -82,37 +78,40 @@ def play_game(model, render_screen=True):
         
         # player should stand still
         if result == 0:
-            if moving_right:
+            if game.moving_right:
                 game.player.move_right(False)
-                moving_right = False
+                game.moving_right = False
         
         # player should move to the right
         elif result == 1:
-            if not moving_right:
+            if not game.moving_right:
                 game.player.move_right(True)
-                moving_right = True
+                game.moving_right = True
         
         # player should move to the right and jump
         elif result == 2:
-            if not moving_right:
+            if not game.moving_right:
                 game.player.move_right(True)
-                moving_right = True
+                game.moving_right = True
             game.player.jump()
         #print(f"Prediction: 0: {round(predictions[0][0], 2)}; 1: {round(predictions[0][1], 2)}")
         
         if game.game_over:
             models[model] = game.player.traveled_distance
-            break
+            return #????
         
 
         if game.player.speed_x == 0:
-            standing_still_counter += 1
-            if standing_still_counter >= 20: # standing still for longer than two seconds
+            game.standing_still_counter += 1
+            if game.standing_still_counter >= 20: # standing still for longer than two seconds
                 game.game_over = True
         else:
-            standing_still_counter = 0
+            game.standing_still_counter = 0
         
         #sleep(0.1)
+
+    game.callback = callback
+    game.start() # blocking call
 
 
 tf.random.set_seed(SEED)
