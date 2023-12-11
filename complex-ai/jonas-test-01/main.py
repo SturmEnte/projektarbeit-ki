@@ -24,6 +24,8 @@ game_objects = []
 for game_object in part_manager.spawn_start_part(screen):
     game_objects.append(game_object)
 
+get_ticks_last_frame = 0
+
 # Game loop
 while running:
     # Poll for events
@@ -50,6 +52,12 @@ while running:
             
             if event.key == pygame.K_d:
                 player.move_right(False)    
+
+    t = pygame.time.get_ticks()
+    # deltaTime in seconds.
+    delta_time = (t - get_ticks_last_frame) / 1000.0
+    get_ticks_last_frame = t 
+    print("Delta time:", delta_time)
 
     # Clear the screen
     screen.fill((0, 128, 255))
@@ -80,7 +88,7 @@ while running:
     else:
         if player.falling == False:
             player.falling = True
-            player.fall_start = time.time()
+            player.fall_start = pygame.time.get_ticks()
             print("Started falling: " + time.time().__str__())
 
     if player.rect.top >= screen.get_height() + player.rect.height:
@@ -115,6 +123,6 @@ while running:
     screen.blit(fps_surface, (0, 0))
 
     pygame.display.flip()
-    clock.tick(60)
+    # clock.tick(60)
 
 pygame.quit()
