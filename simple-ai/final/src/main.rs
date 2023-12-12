@@ -24,77 +24,32 @@ use std::{
     io::{prelude::*, BufReader},
     net::{TcpListener, TcpStream},
 };
-use regex::Regex;
 
 use httparse;
 
 
 fn main() {
 
-    let mut exit = false;
     let mut nn: FeedForward = FeedForward::new(&[1,1]);
     nn.activation(Tanh);
     let mut data = DataSet::new();
     
     nn = neuroflow::io::load("20231211_cai").unwrap();
 
-    let listener = TcpListener::bind("127.0.0.1:3000").unwrap();
+        // let i: Vec<f64> = vec![1.0, 1.0, 1.0];
+        let mut i: Vec<f64> = Vec::new();
 
-    for stream in listener.incoming() {
-        let mut stream = stream.unwrap();
+        let input = fs::read_to_string("input.txt").unwrap();
 
-        let mut headers = [httparse::EMPTY_HEADER; 64];
-        let mut req = httparse::Request::new(&mut headers);
-
-        // let mut buf_reader = BufReader::new(&mut stream);
-        // let http_request: Vec<_> = buf_reader
-        //     .lines()
-        //     .map(|result| result.unwrap())
-        //     .take_while(|line| !line.is_empty())
-        //     .collect();
-
-        // println!("Request: {:#?}", http_request);
-
-        // let mut buffer = [0; 1024];
-        // stream.read(&mut buffer).unwrap();
-
-        // println!("Request:");
-        
-        // let mut started_getting_values = false;
-
-        // for line_str in  String::from_utf8_lossy(&buffer[..]).split("\n") {
-            
-
-        //     if line_str == "\n" {
-        //         print!("Empty ");
-        //     }
-
-        //     let pattern = r"\\";
-        //     let regex = Regex::new(pattern).unwrap();
-
-        //     let escaped_string = regex.replace_all(&line_str, "\\\\").to_string();
-
-        //     println!("|{}|", escaped_string);
-        // }
-
-        let i: Vec<f64> = vec![1.0, 1.0, 1.0];
+        for line in input.split("\n") {
+            i.push(line.parse::<f64>().unwrap());
+        }
 
         let result: &f64 = nn.calc(&i).first().unwrap();
-        // for result in results {
-        //     println!("{}", result);
-        // }
 
         println!("Result: {}", result);
 
-        let status_line = "HTTP/1.1 200 OK";
-        let contents = "Hello World";
-        let length = contents.len();
-
-        let response =
-            format!("{status_line}\r\nContent-Length: {length}\r\n\r\n{contents}");
-
-        stream.write_all(response.as_bytes()).unwrap();
-    }
+        fs::write("result.txt", format!("{}", result)).unwrap();
 
 }
 
