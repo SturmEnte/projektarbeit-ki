@@ -24,7 +24,6 @@ use std::{
     io::{prelude::*, BufReader},
     net::{TcpListener, TcpStream},
 };
-use regex::Regex;
 
 use httparse;
 
@@ -45,7 +44,7 @@ fn main() {
 
         let mut headers = [httparse::EMPTY_HEADER; 64];
         let mut req = httparse::Request::new(&mut headers);
-
+    
         // let mut buf_reader = BufReader::new(&mut stream);
         // let http_request: Vec<_> = buf_reader
         //     .lines()
