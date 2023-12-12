@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 def return_file(path):
     content = ""
-    with open(path) as f:
+    with open(path, encoding="utf-8") as f:
         content = f.read()
     return content
 
