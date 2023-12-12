@@ -11,7 +11,7 @@ def ai_request():
     r = request.args.get("r")
     g = request.args.get("g")
     b = request.args.get("b")
-    input = f"{r}\n{g}\n{b}"
+    input = f"{r};{g};{b}"
     
     with open("input.txt", "w") as f:
         f.write(input)

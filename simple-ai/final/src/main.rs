@@ -29,7 +29,7 @@ fn main() {
 
         let input = fs::read_to_string("input.txt").unwrap();
 
-        for line in input.split("\n") {
+        for line in input.split(";") {
             i.push(line.parse::<f64>().unwrap());
         }
 
