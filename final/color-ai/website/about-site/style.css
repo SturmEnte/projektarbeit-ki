@@ -1,0 +1,58 @@
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	background-color: #121420;
+	color: #d1d1d7;
+	margin: 0;
+}
+
+#navBar {
+	padding: 15px;
+	background-color: #1b2432;
+	box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;
+}
+
+#navBar h1 {
+	margin: 0px;
+}
+
+#aboutTextAllign {
+	align-items: center;
+	justify-content: center;
+	display: flex;
+	flex-direction: column;
+}
+
+#aboutText {
+	box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;
+	padding: 20px;
+	color: #d1d1d7;
+	margin-top: 15%;
+	background-color: #1b2432;
+	height: fit-content;
+	width: 500px;
+	border: solid;
+}
+
+.buttonGeneral{
+	border: solid;
+	background-color: #1b2432;
+	color: #d1d1d7;
+	text-decoration: none;
+	margin: 20px;
+	font-size: 20px;
+	padding: 5px;
+	transition: 0.3s;
+}
+.buttonGeneral:hover{
+	color: #8338ec;
+}
+
+#fancy {
+	width: 500px;
+	height: 50px;
+	background-color: #415a77;
+	position: fixed;
+	bottom: 0;
+	left: -125px;
+	transform: rotate(45deg);
+}
