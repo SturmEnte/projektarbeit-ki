@@ -1,8 +1,9 @@
-const colorPicker = document.getElementById("colorpicker")
+const URL = "http:/127.0.0.1:3000";
 
-colorPicker.oninput = (event) => {
-    console.log(colorPicker.value);
-    var root = document.querySelector(":root");
-    root.style.setProperty("--main-color", colorPicker.value);
-}
- 
+const colorPicker = document.getElementById("colorpicker");
+
+colorPicker.oninput = () => {
+	console.log(colorPicker.value);
+	var root = document.querySelector(":root");
+	root.style.setProperty("--main-color", colorPicker.value);
+};
