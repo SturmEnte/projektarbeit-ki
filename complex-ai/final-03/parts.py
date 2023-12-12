@@ -90,6 +90,8 @@ class Parts:
     def spawn_part_from_sequence(self, start_x, screen):
         n = self.part_sequence[self.part_counter]
         self.part_counter += 1
+        if self.part_counter >= len(self.part_sequence):
+            self.part_counter = 0
         return self.spawn_part_n(start_x, n, screen)
 
     def spawn_part(self, start_x, part, screen):

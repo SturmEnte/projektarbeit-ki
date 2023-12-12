@@ -14,7 +14,7 @@ standard_level = 100
 player_width = 60
 max_height_element = 150
 
-models_per_generation = 50
+models_per_generation = 30
 mutation_rate = 0.1
 from_scratch = False
 use_multithreading = False
