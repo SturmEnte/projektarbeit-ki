@@ -2,11 +2,11 @@ from flask import Flask
 from flask import request
 from os import system
 
-IP = "192.168.50.213"
+IP = "127.0.0.1"
 
 app = Flask(__name__)
 
-@app.route("/")
+@app.route("/interface")
 def ai_request():
     r = request.args.get("r")
     g = request.args.get("g")
