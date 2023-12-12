@@ -1,4 +1,4 @@
-const TARGET = "http:/127.0.0.1:3000";
+const TARGET = "http:/127.0.0.1:3000/interface";
 
 const colorPicker = document.getElementById("colorpicker");
 
@@ -38,7 +38,10 @@ setInterval(async () => {
 		const res = await fetch(url);
 		const data = await res.text();
 
-		console.log("Data:", data);
+		const result = Number(data);
+
+		console.log("Data:", result);
+
 		colorPicker.disabled = false;
 	}
 }, 100);
