@@ -8,7 +8,7 @@ fn main() {
     let mut nn: FeedForward = FeedForward::new(&[1,1]);
     nn.activation(Tanh);
     
-    nn = neuroflow::io::load("20231211_cai").unwrap();
+    nn = neuroflow::io::load("2023_2_cai").unwrap();
         let mut i: Vec<f64> = Vec::new();
 
         let input = fs::read_to_string("input.txt").unwrap();
