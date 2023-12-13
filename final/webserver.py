@@ -23,6 +23,15 @@ def return_file(path):
     
     return Response(content, mimetype=mimetype)
 
+def return_apk(path):
+    content = ""
+    mimetype = "application/webassembly"
+
+    with open(path, "rb") as f:
+        content = f.read()
+    
+    return Response(content, mimetype=mimetype)
+
 ## overview
 @app.route("/")
 def index():
@@ -33,6 +42,8 @@ def index_css():
     return return_file("index/style.css")
 
 ## color ai
+
+# interface
 @app.route("/interface")
 def ai_request():
     r = request.args.get("r")
@@ -69,15 +80,24 @@ def color_index_css():
     return return_file("color-ai/website/style.css")
 
 # about page
-@app.route("/color-ai/about-site/")
-def color_about():
-    return return_file("color-ai/website/about-site/index.html")
+# @app.route("/color-ai/about-site/")
+# def color_about():
+#     return return_file("color-ai/website/about-site/index.html")
 
-@app.route("/color-ai/about-site/style.css")
-def color_about_css():
-    return return_file("color-ai/website/about-site/style.css")
+# @app.route("/color-ai/about-site/style.css")
+# def color_about_css():
+#     return return_file("color-ai/website/about-site/style.css")
 
 ## game ai
+
+# index page
+@app.route("/game-ai/")
+def game_index():
+    return return_file("game-ai/web/index.html")
+
+@app.route("/game-ai/final.apk")
+def game_index_apk():
+    return return_apk("game-ai/web/final.apk")
 
 if __name__ == "__main__":
     app.run(port=3000, host=IP)

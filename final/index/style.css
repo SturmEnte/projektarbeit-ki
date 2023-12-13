@@ -83,6 +83,18 @@ p a {
 	color: #85a4c7;
 }
 
+.controls {
+	display: inline;
+}
+
+.keyboard {
+	display: inline;
+    padding: 0.2em 0.4em;
+    border-radius: 2px;
+    background-color: #333333;
+    border: solid 2px #222222;
+}
+
 @media only screen and (max-width: 650px){
 	#aboutTextAllign {
 		flex-direction: column;
