@@ -19,9 +19,6 @@ class Parts:
                 (200 + 3 * 100, s_height - DEFAULT_GROUND_HEIGHT, 100, DEFAULT_GROUND_HEIGHT, DEFAULT_GROUND_COLOR),
                 (200 + 5 * 100, s_height - DEFAULT_GROUND_HEIGHT, 100, DEFAULT_GROUND_HEIGHT, DEFAULT_GROUND_COLOR),
                 (200 + 7 * 100, s_height - DEFAULT_GROUND_HEIGHT, 200, DEFAULT_GROUND_HEIGHT, DEFAULT_GROUND_COLOR),
-                # Seperation lines
-                (0, s_height - DEFAULT_GROUND_HEIGHT, 1, DEFAULT_GROUND_HEIGHT, (255, 0, 0)),
-                (200 + 7 * 100 + 200, s_height - DEFAULT_GROUND_HEIGHT, 1, DEFAULT_GROUND_HEIGHT, (255, 0, 0)),
             ],
             # 3 mid jumps
             [
@@ -31,9 +28,6 @@ class Parts:
                 (200 + 5 * 100, s_height - DEFAULT_GROUND_HEIGHT, 100, DEFAULT_GROUND_HEIGHT, DEFAULT_GROUND_COLOR),
                 (200 + 8 * 100, s_height - DEFAULT_GROUND_HEIGHT, 100, DEFAULT_GROUND_HEIGHT, DEFAULT_GROUND_COLOR),
                 (200 + 11 * 100, s_height - DEFAULT_GROUND_HEIGHT, 200, DEFAULT_GROUND_HEIGHT, DEFAULT_GROUND_COLOR),
-                # Seperation lines
-                (0, s_height - DEFAULT_GROUND_HEIGHT, 1, DEFAULT_GROUND_HEIGHT, (255, 0, 0)),
-                (200 + 11 * 100 + 200, s_height - DEFAULT_GROUND_HEIGHT, 1, DEFAULT_GROUND_HEIGHT, (255, 0, 0)),
             ],
             # 3 mid jumps up
             [
@@ -43,9 +37,6 @@ class Parts:
                 (200 + 4.5 * 100, s_height - DEFAULT_GROUND_HEIGHT - 100, 100, DEFAULT_GROUND_HEIGHT, DEFAULT_GROUND_COLOR),
                 (200 + 7.5 * 100, s_height - DEFAULT_GROUND_HEIGHT - 150, 100, DEFAULT_GROUND_HEIGHT, DEFAULT_GROUND_COLOR),
                 (200 + 10 * 100, s_height - DEFAULT_GROUND_HEIGHT, 200, DEFAULT_GROUND_HEIGHT, DEFAULT_GROUND_COLOR),
-                # Seperation lines
-                (0, s_height - DEFAULT_GROUND_HEIGHT, 1, DEFAULT_GROUND_HEIGHT, (255, 0, 0)),
-                (200 + 10 * 100 + 200, s_height - DEFAULT_GROUND_HEIGHT, 1, DEFAULT_GROUND_HEIGHT, (255, 0, 0)),
             ],
             # short - long - short
             [
@@ -55,12 +46,8 @@ class Parts:
                 (200 + 5 * 100, s_height - DEFAULT_GROUND_HEIGHT, 100, DEFAULT_GROUND_HEIGHT, DEFAULT_GROUND_COLOR),
                 (200 + 9 * 100, s_height - DEFAULT_GROUND_HEIGHT, 100, DEFAULT_GROUND_HEIGHT, DEFAULT_GROUND_COLOR),
                 (200 + 11 * 100, s_height - DEFAULT_GROUND_HEIGHT, 200, DEFAULT_GROUND_HEIGHT, DEFAULT_GROUND_COLOR),
-                # Seperation lines
-                (0, s_height - DEFAULT_GROUND_HEIGHT, 1, DEFAULT_GROUND_HEIGHT, (255, 0, 0)),
-                (200 + 11 * 100 + 200, s_height - DEFAULT_GROUND_HEIGHT, 1, DEFAULT_GROUND_HEIGHT, (255, 0, 0)),
             ],
         ]
-
 
         # Test parts
         # self.parts = [
