@@ -2,19 +2,16 @@ import pygame
 
 class GameObject:
 
-    def __init__(self, left, top, width, height, color, screen):
+    def __init__(self, left, top, width, height, color, screen, id=0):
         self.rect = pygame.Rect(left, top, width, height)
         self.color = color
         self.screen = screen
+        self.id = id
         self.update_position_vars()
 
     def move(self, x, y):
-        self.rect.move(x, y)
+        self.rect.update(self.rect.left + x, self.rect.top + y, self.rect.width, self.rect.height)
         self.update_position_vars()
-
-    # def render(self):
-    #     print(self.color)
-    #     pygame.draw.rect(self.screen, self.color, self.rect)
 
     def update_position_vars(self):
         self.left = self.rect.width

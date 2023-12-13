@@ -3,6 +3,7 @@ import time
 
 GRAVITY = 8
 JUMP_FORCE = 15
+WALKING_SPEED = 10
 
 class Player:
 
@@ -23,21 +24,66 @@ class Player:
         self.speed_y_start = 0
         self.fall_start = time.time()
         self.falling = False
-        self.relative_position = (0, 0)
+        self.traveled_distance = 0
 
-    def update(self):
+    def update(self, game_objects):
         if self.falling:
             # Fall down like in real live (10 m/s² == 10 pixels/s²)
             self.speed_y += GRAVITY * (time.time() - self.fall_start)
 
-        self.relative_position = (self.relative_position[0] + self.speed_x, self.relative_position[1] + self.speed_y)
-        self.move(self.speed_x, self.speed_y)
+        # x Movement        
+        n = 1
+        if self.speed_x < 0:
+            n = -1
+        elif self.speed_x == 0:
+            n = 0
+        
+        #print(f"x-speed: {self.speed_x} \t| n: {n}")
 
-    def move(self, left, top):
-        self.rect.update(self.rect.left + left, self.rect.top + top, self.rect.width, self.rect.height)
-        self.ground_collider.update(self.ground_collider.left + left, self.ground_collider.top + top, self.ground_collider.width, self.ground_collider.height)
+        for _ in range(abs(round(self.speed_x))):
+            b = False # Wether to break the loop
+            for game_object in game_objects:
+                if n == -1 and game_object.colliderect(self.side_colliders[0]):
+                    b = True
+                    break
+                elif n == 1 and game_object.colliderect(self.side_colliders[1]):
+                    b = True
+                    break
+            if b:
+                break
+            self.move(n, 0, game_objects)
+
+        # y Movement
+        n = 1
+        if self.speed_y < 0:
+            n = -1
+        elif self.speed_y == 0:
+            n = 0
+        
+        #print(f"y-speed: {self.speed_y} \t| n: {n}")
+
+        for _ in range(abs(round(self.speed_y))):
+            b = False # Wether to break the loop
+            for game_object in game_objects:
+                if n == 1 and game_object.colliderect(self.ground_collider):
+                    b = True
+                    break
+            if b:
+                break
+            self.move(0, n, game_objects)
+
+        print(f"Travelled distance: {self.traveled_distance}")
+
+    def move(self, left, top, game_objects):
+        self.rect.update(self.rect.left, self.rect.top + top, self.rect.width, self.rect.height)
+        self.ground_collider.update(self.ground_collider.left, self.ground_collider.top + top, self.ground_collider.width, self.ground_collider.height)
         for collider in self.side_colliders:
-            collider.update(collider.left + left, collider.top + top, collider.width, collider.height)
+            collider.update(collider.left, collider.top + top, collider.width, collider.height)
+        
+        for game_object in game_objects:
+            game_object.move(-left, 0)
+        
+        self.traveled_distance += left
 
     def draw(self, colliders=False):
         pygame.draw.rect(self.screen, (255, 0, 255), self.rect)
@@ -50,20 +96,15 @@ class Player:
     def jump(self):
         if not self.falling:
             self.speed_y = -JUMP_FORCE
-            # self.falling = True
-            # self.fall_start = time.time()
 
     def move_left(self, should_move):
         if should_move:
-            self.speed_x -= 10
+            self.speed_x -= WALKING_SPEED
         else:
-            self.speed_x += 10
+            self.speed_x += WALKING_SPEED
 
     def move_right(self, should_move):
         if should_move:
-            self.speed_x += 10
+            self.speed_x += WALKING_SPEED
         else:
-            self.speed_x -= 10
-
-    def get_scroll(self):
-        return (self.speed_x, self.speed_y)
+            self.speed_x -= WALKING_SPEED
