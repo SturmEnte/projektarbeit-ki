@@ -1,9 +1,9 @@
 import pygame
 import time
 
-GRAVITY = 8 / 60
+GRAVITY = 8
 JUMP_FORCE = 15
-WALKING_SPEED = 10 / 60
+WALKING_SPEED = 10
 
 class Player:
 
@@ -29,7 +29,7 @@ class Player:
     def update(self, game_objects):
         if self.falling:
             # Fall down like in real live (10 m/s² == 10 pixels/s²)
-            self.speed_y += GRAVITY * (pygame.time.get_ticks() - self.fall_start)
+            self.speed_y += GRAVITY * (time.time() - self.fall_start)
 
         # x Movement        
         n = 1

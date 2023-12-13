@@ -53,12 +53,6 @@ while running:
             if event.key == pygame.K_d:
                 player.move_right(False)    
 
-    t = pygame.time.get_ticks()
-    # deltaTime in seconds.
-    delta_time = (t - get_ticks_last_frame) / 1000.0
-    get_ticks_last_frame = t 
-    print("Delta time:", delta_time)
-
     # Clear the screen
     screen.fill((0, 128, 255))
 
@@ -88,7 +82,7 @@ while running:
     else:
         if player.falling == False:
             player.falling = True
-            player.fall_start = pygame.time.get_ticks()
+            player.fall_start = time.time()
             print("Started falling: " + time.time().__str__())
 
     if player.rect.top >= screen.get_height() + player.rect.height:
@@ -105,7 +99,7 @@ while running:
     for game_object in game_objects:
         pygame.draw.rect(screen, game_object.color, game_object.rect)
 
-    player.draw(colliders=True)
+    player.draw()
 
     # Display the game over text
     if game_over:
@@ -123,6 +117,6 @@ while running:
     screen.blit(fps_surface, (0, 0))
 
     pygame.display.flip()
-    # clock.tick(60)
+    clock.tick(60)
 
 pygame.quit()
