@@ -2,6 +2,10 @@ const TARGET = "http:/127.0.0.1:3000/interface";
 
 const colorPicker = document.getElementById("colorpicker");
 
+const colorDisplayElements = [document.getElementById("one"), document.getElementById("two"), document.getElementById("three")];
+
+console.log(colorDisplayElements);
+
 lastInput = 0;
 requested = false;
 
@@ -41,6 +45,14 @@ setInterval(async () => {
 		const result = Number(data);
 
 		console.log("Data:", result);
+		colorDisplayElements.forEach((displayElement) => {
+			console.log(displayElement);
+			if (result < 0.5) {
+				displayElement.style.color = "white";
+				return;
+			}
+			displayElement.style.color = "black";
+		});
 
 		colorPicker.disabled = false;
 	}
