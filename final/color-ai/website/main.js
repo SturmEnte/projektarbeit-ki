@@ -36,7 +36,7 @@ setInterval(async () => {
 		green = green / 255;
 		blue = blue / 255;
 
-		let url = new URL(TARGET);
+		let url = new URL(location.host + TARGET);
 		url.search = new URLSearchParams({ r: red, g: green, b: blue }).toString();
 
 		const res = await fetch(url);
