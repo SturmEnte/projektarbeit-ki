@@ -13,8 +13,14 @@ os.mkdir("build/color-ai")
 
 os.system("cd color-ai && cargo build --release")
 
+if os.name == "nt": # Windows
+    copy("color-ai/target/release/color_ai_neuroflow.exe", "build/color-ai/color_ai.exe")
+elif os.name == "posix": # Linux
+    copy("color-ai/target/release/color_ai_neuroflow", "build/color-ai/color_ai")
+else:
+    raise "OS not recognised!"
+
 copy("webserver.py", "build/webserver.py")
-copy("color-ai/target/release/color_ai_neuroflow.exe", "build/color-ai/color_ai.exe")
 copy("color-ai/2023_2_cai", "build/color-ai/2023_2_cai")
 copy_folder("color-ai/website", "build/color-ai/website")
 copy_folder("index", "build/index")
