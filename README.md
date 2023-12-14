@@ -1,3 +1,7 @@
+# About
+
+In diesem repository sind alle Dateien vom Programmierteil unserer Projektarbeit
+
 # Unsere Namen bei GitHub
 
 ## Jonas
