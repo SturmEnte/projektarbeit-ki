@@ -46,9 +46,14 @@
   - Pfad: final/color-ai/website
   - Autor(en): Julian, Jonas
 
-- Die simple AI (color-ai):
+- Die simple KI (color-ai):
 
   - Pfad: final/color-ai/ (ohne /website)
+  - Autor(en): Nils
+
+- Die simple KI mit Konsolen Interface (nicht mit web kompatibel)
+
+  - Pfad: simple-ai/nils/new
   - Autor(en): Nils
 
 - Der Versuch von Nils selber eine KI zu erstellen:
