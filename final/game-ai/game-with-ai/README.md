@@ -13,6 +13,7 @@ Um diese Abhängigkeiten zu installieren, sollte Python Version 3.10.8 unter Win
 Sobald Python installiert ist, kann es je nach Betriebsystem mit ```python```, ```python3``` oder ```py``` aufgerufen werden. Die funktionierende Schreibweise sollte in den folgenden Installationsanweisungen ersetzt werden:
 
 ```python -m pip install tensorflow```
+
 ```python -m pip install pygame```
 
 Wenn Python 3.8.10 istalliert ist, sollte auch automatisch Tensorflow 2.13.1 installiert werden.
