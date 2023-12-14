@@ -34,8 +34,7 @@ body {
 	height: auto;
 }
 
-
-.buttonGeneral{
+.buttonGeneral {
 	border: solid;
 	background-color: #1b2432;
 	color: #d1d1d7;
@@ -44,8 +43,9 @@ body {
 	font-size: 20px;
 	padding: 5px;
 	transition: 0.3s;
+	cursor: pointer;
 }
-.buttonGeneral:hover{
+.buttonGeneral:hover {
 	color: #8338ec;
 }
 
@@ -89,13 +89,17 @@ p a {
 
 .keyboard {
 	display: inline;
-    padding: 0.2em 0.4em;
-    border-radius: 2px;
-    background-color: #333333;
-    border: solid 2px #222222;
+	padding: 0.2em 0.4em;
+	border-radius: 2px;
+	background-color: #333333;
+	border: solid 2px #222222;
 }
 
-@media only screen and (max-width: 650px){
+.link {
+	cursor: pointer;
+}
+
+@media only screen and (max-width: 650px) {
 	#aboutTextAllign {
 		flex-direction: column;
 		gap: 0;
