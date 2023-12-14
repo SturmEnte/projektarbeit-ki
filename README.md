@@ -25,22 +25,27 @@
   - Pfad: final/color-ai/ (ohne /website)
   - Autor(en): Nils
 
+- Der Versuch von Nils selber eine KI zu erstellen:
+
+  - Pfad: simple-ai/nils/old
+  - Autor(en): Nils
+
 - Webserver für die finale Website:
 
   - Pfad: final/webserver.py und final/index
   - Autor(en): Mika, Julian
 
 - Erste Beispiel-KI mit MNIST Datensatz (Bilderkennung):
-  
+
   - Pfad: complex-ai/mika-test-01
   - Autor(en): Mika
 
 - Erste Beispiel-KI mit eigenen Daten (XOR-Gate):
-  
+
   - Pfad: complex-ai/mika-test-02
   - Autor(en): Mika
 
 - Pygame-Spiel für Webbrowser kompatibel:
-  
+
   - Pfad: complex-ai/mika-test-03
   - Autor(en): Mika
