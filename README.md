@@ -7,6 +7,11 @@
 
 - Das Spiel mit KI
 
+  - Pfad: final/game-ai/game-with-ai
+  - Autor(en): Mika, Jonas
+
+- Die Vorgängerversionen des Spiels mit KI
+
   - Pfad: complex-ai/final-01, complex-ai/final-02, complex-ai/final-03
   - Autor(en): Mika, Jonas
 
@@ -45,7 +50,7 @@
   - Pfad: complex-ai/mika-test-02
   - Autor(en): Mika
 
-- Pygame-Spiel für Webbrowser kompatibel:
+- Pygame-Spiel mit Webbrowser kompatibel:
 
   - Pfad: complex-ai/mika-test-03
   - Autor(en): Mika
