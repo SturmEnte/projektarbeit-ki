@@ -2,6 +2,7 @@ from flask import Flask
 from flask import request
 from flask import Response
 from os import system, chdir, path
+import os
 
 IP = "127.0.0.1"
 
@@ -55,9 +56,11 @@ def ai_request():
 
     with open("input.txt", "w") as f:
         f.write(input)
-
-    if path.exists("color_ai.exe"):
+    
+    if os.name == "nt" and path.exists("color_ai.exe"): # Windows
         system("color_ai.exe")
+    elif os.name == "posix" and path.exists("color_ai"): # Linux
+        system("color_ai")
     else:
         system("cargo run")
 
