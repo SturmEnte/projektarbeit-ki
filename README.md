@@ -29,3 +29,18 @@
 
   - Pfad: final/webserver.py und final/index
   - Autor(en): Mika, Julian
+
+- Erste Beispiel-KI mit MNIST Datensatz (Bilderkennung):
+  
+  - Pfad: complex-ai/mika-test-01
+  - Autor(en): Mika
+
+- Erste Beispiel-KI mit eigenen Daten (XOR-Gate):
+  
+  - Pfad: complex-ai/mika-test-02
+  - Autor(en): Mika
+
+- Pygame-Spiel für Webbrowser kompatibel:
+  
+  - Pfad: complex-ai/mika-test-03
+  - Autor(en): Mika
