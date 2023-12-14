@@ -19,7 +19,7 @@ moving_right = False
 
 tf.random.set_seed(SEED)
 
-model = tf.keras.models.load_model("ai")
+model = tf.keras.models.load_model("ai_final")
 
 while True:
     if game.initialized:
