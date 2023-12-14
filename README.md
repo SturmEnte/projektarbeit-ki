@@ -1,3 +1,24 @@
+# Unsere Namen bei GitHub
+
+## Jonas
+
+- SturmEnte
+
+## Julian
+
+- Jb2k5
+- JUlian2k5\_
+
+## Nils
+
+- NichtNil5
+- Katze
+
+## Mika
+
+- Unbekannt28
+- BuildTools
+
 # Wo ist der Code von was?
 
 - Das spielbare Spiel ohne KI
