@@ -1,4 +1,4 @@
-const TARGET = "http:/127.0.0.1:3000/interface";
+const TARGET = "/interface";
 
 const colorPicker = document.getElementById("colorpicker");
 
