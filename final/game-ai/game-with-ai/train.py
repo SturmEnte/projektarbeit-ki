@@ -138,7 +138,7 @@ while True:
         if from_scratch:
             model = get_random_model()
         else:
-            model = tf.keras.models.load_model("ai")
+            model = tf.keras.models.load_model("ai_final")
             if i is not 0:
                 mutate(model, mutation_rate)
         

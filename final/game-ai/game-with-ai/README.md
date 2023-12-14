@@ -25,6 +25,8 @@ Mit der Main Datei Kann das aktuell schlauste neuronale Netzwerk getestet werden
 
 ```python main.py```
 
+Da es leider bei jedem Aufruf des Programms kleine Unteschiede bei den Berechnungen der KI gibt, kommt es vor, dass die KI auch zu Beginn des Spiels Fehler macht. Durch wiederholtes Ausführen des Programms kann aber teilweise ein durchaus beachtlicher Fortschritt beobachtet werden.
+
 ### train.py
 
 Mit dieser Datei wird die KI trainiert. In der Datei selbst sind die Modelle pro Generation und andere wichtige Einstellungen abgespeichert. Das aktuelle Modell kann mit diesem Aufruf weiter trainiert werden:
