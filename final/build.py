@@ -1,3 +1,5 @@
+# Author: SturmEnte (Jonas)
+
 import os
 from shutil import copy2 as copy
 from shutil import copytree as copy_folder
